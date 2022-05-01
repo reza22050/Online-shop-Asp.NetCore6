@@ -30,15 +30,7 @@ namespace WebSite.EndPoint.Utilities.Filters
             var Request = context.HttpContext.Request;
             string? visitorId = context.HttpContext.Request.Cookies["VisitorId"];
 
-            if (visitorId == null)
-            {
-                visitorId = Guid.NewGuid().ToString();
-                context.HttpContext.Response.Cookies.Append("VisitorId", visitorId, new CookieOptions() { 
-                    Path ="/",
-                    HttpOnly = true,
-                    Expires = DateTime.Now.AddDays(30)
-                });
-            }
+           
 
 
             _saveVisitorInfoService.Execute(new RequestSaveVisitorInfoDto()

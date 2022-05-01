@@ -1,11 +1,13 @@
 using Application.Interfaces.Contexts;
 using Application.Visitors.SaveVisitorInfo;
+using Application.Visitors.VisitorOnline;
 using Infrastructure.IdentityConfig;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Context.MongoContext;
 using WebSite.EndPoint.Hubs;
 using WebSite.EndPoint.Utilities.Filters;
+using WebSite.EndPoint.Utilities.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +33,7 @@ builder.Services.ConfigureApplicationCookie(option =>
 
 builder.Services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
 builder.Services.AddTransient<ISaveVisitorInfoService, SaveVisitorInfoService>();
+builder.Services.AddTransient<IVisitorOnlineService, VisitorOnlineService>();
 
 builder.Services.AddScoped<SaveVisitorFilter>();
 builder.Services.AddSignalR();
@@ -44,6 +47,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+app.UseSetVisitorId();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

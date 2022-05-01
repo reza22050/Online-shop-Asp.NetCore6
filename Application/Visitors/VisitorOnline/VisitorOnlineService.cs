@@ -1,21 +1,9 @@
 ﻿using Application.Interfaces.Contexts;
 using Domain.Visitors;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Visitors.VisitorOnline
 {
-    public interface IVisitorOnlineService
-    {
-        void ConnectUser(string ClientId);
-        void DisConnectUser(string ClientId);
-        int GetCount();
-    }
-
     public class VisitorOnlineService : IVisitorOnlineService
     {
         private readonly IMongoDbContext<OnlineVisitor> _mongoDbContext;
@@ -27,17 +15,25 @@ namespace Application.Visitors.VisitorOnline
         }
         public void ConnectUser(string ClientId)
         {
-            
+            var exist = _mongoCollection.AsQueryable().FirstOrDefault(x=>x.ClientId==ClientId);
+            if (exist == null)
+            {
+                _mongoCollection.InsertOne(new OnlineVisitor()
+                {
+                    ClientId = ClientId,
+                    Time = DateTime.Now,
+                });
+            }
         }
 
         public void DisConnectUser(string ClientId)
         {
-            throw new NotImplementedException();
+            _mongoCollection.FindOneAndDelete(p=>p.ClientId== ClientId);
         }
 
         public int GetCount()
         {
-            throw new NotImplementedException();
+            return _mongoCollection.AsQueryable().Count();
         }
     }
 
