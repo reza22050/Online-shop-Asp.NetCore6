@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence.Context;
 
@@ -11,9 +12,10 @@ using Persistence.Context;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220501191536_catalogtype_catalogbrand_update2")]
+    partial class catalogtype_catalogbrand_update2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,7 +40,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 5, 2, 1, 5, 44, 206, DateTimeKind.Local).AddTicks(4063));
+                        .HasDefaultValue(new DateTime(2022, 5, 1, 23, 45, 35, 777, DateTimeKind.Local).AddTicks(6814));
 
                     b.Property<bool>("IsRemove")
                         .ValueGeneratedOnAdd()
@@ -119,7 +121,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("InsertTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2022, 5, 2, 1, 5, 44, 206, DateTimeKind.Local).AddTicks(5560));
+                        .HasDefaultValue(new DateTime(2022, 5, 1, 23, 45, 35, 777, DateTimeKind.Local).AddTicks(8294));
 
                     b.Property<bool>("IsRemove")
                         .ValueGeneratedOnAdd()

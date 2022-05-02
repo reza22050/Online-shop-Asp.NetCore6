@@ -15,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 #region Connection String
+builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
+
 builder.Services.AddDbContext<DataBaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionStrings:SqlServer"]);

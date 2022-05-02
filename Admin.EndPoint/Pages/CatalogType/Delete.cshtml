@@ -1,0 +1,49 @@
+﻿@page
+@model Admin.EndPoint.Pages.CatalogType.DeleteModel
+@{
+}
+    <div class="page-body">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header-2">
+                                                <h5>Add new Catalog</h5>
+                                            </div>
+
+                                            @foreach (var item in Model.Message)
+                                            {
+                                                <div class="alert alert-info">
+                                                    <p class="mb-0">@item</p>
+                                                </div>
+                                            }
+
+                                            <form class="theme-form theme-form-2 mega-form" asp-page="delete" method="post">
+                                                <div class="row">
+                                                    <div class="mb-4 row align-items-center">
+                                                       <h3>Are you sure?</h3>
+                                                    </div>
+                                                    <input type="hidden" asp-for="CatalogType.Id" />
+                                                <div class="mb-4 row align-items-center">
+                                                    <div class="card-footer text-end border-0 pt-0">
+                                                            <button type="submit" class="btn btn-primary me-3">Yes</button>
+                                                            <a asp-page="Index" class="btn btn-outline-primary">No</a>
+                                                    </div>
+                                                </div>  
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+    </div>
