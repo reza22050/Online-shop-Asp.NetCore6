@@ -1,7 +1,11 @@
 using Admin.EndPoint.MappingProfiles;
+using Application.Catalogs.CatalogItems.AddNewCatalogItem;
+using Application.Catalogs.CatalogItems.CatalogItemServices;
 using Application.Catalogs.CatalogTypes;
 using Application.Interfaces.Contexts;
 using Application.Visitors.GetTodayReport;
+using FluentValidation;
+using Infrastructure.ExternalApi.ImageServer;
 using Infrastructure.MappingProfile;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
@@ -20,15 +24,22 @@ builder.Services.AddDbContext<DataBaseContext>(options =>
 });
 #endregion
 
-builder.Services.AddScoped<IGetTodayReportService, GetTodayReportService>();
 builder.Services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
+builder.Services.AddScoped<IGetTodayReportService, GetTodayReportService>();
+builder.Services.AddTransient<ICatalogTypeService, CatalogTypeService>();
+builder.Services.AddTransient<IAddNewCatalogItemService, AddNewCatalogItemService>();
+builder.Services.AddTransient<ICatalogItemService, CatalogItemService>();
+builder.Services.AddTransient<IImageUploadService, ImageUploadService>();
+
 
 
 //Mapper
 builder.Services.AddAutoMapper(typeof(CatalogMappingProfile));
 builder.Services.AddAutoMapper(typeof(CatalogVMMappingProfile));
 
-builder.Services.AddTransient<ICatalogTypeService, CatalogTypeService>();
+//FulentValidation
+builder.Services.AddTransient<IValidator<AddNewCatalogItemDto>, AddNewCatalogItemDtoValidator>();
+
 
 var app = builder.Build();
 

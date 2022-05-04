@@ -1,7 +1,10 @@
+using Application.Catalogs.CatalogItems.AddNewCatalogItem;
+using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
 using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
 using Infrastructure.IdentityConfig;
+using Infrastructure.MappingProfile;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Context.MongoContext;
@@ -36,9 +39,14 @@ builder.Services.ConfigureApplicationCookie(option =>
 builder.Services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
 builder.Services.AddTransient<ISaveVisitorInfoService, SaveVisitorInfoService>();
 builder.Services.AddTransient<IVisitorOnlineService, VisitorOnlineService>();
+builder.Services.AddTransient<IGetMenuItemService, GetMenuItemService>();
 
 builder.Services.AddScoped<SaveVisitorFilter>();
 builder.Services.AddSignalR();
+
+
+//Mapper
+builder.Services.AddAutoMapper(typeof(CatalogMappingProfile));
 
 var app = builder.Build();
 

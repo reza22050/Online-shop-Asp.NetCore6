@@ -3,11 +3,13 @@ using Domain.Attributes;
 using Domain.Catalogs;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Persistence.EntityConfiguration;
 using Persistence.Seeds;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +25,7 @@ namespace Persistence.Context
 
         public DbSet<CatalogBrand> CatalogBrands { get; set; }
         public DbSet<CatalogType> CatalogTypes { get; set; }
-        //public DbSet<CatalogItem> CatalogItems { get; set; }
+        public DbSet<CatalogItem> CatalogItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -92,4 +94,6 @@ namespace Persistence.Context
         }
 
     }
+
+   
 }

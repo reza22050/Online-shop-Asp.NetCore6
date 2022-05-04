@@ -1,0 +1,74 @@
+﻿@using Application.Catalogs.GetMenuItem;
+@model List<MenuItemDo>
+@{
+    Layout = null;
+    int indexItem = 1;
+    int maxColumnCount = Model.Where(x => x.ParentId == null).Count();
+}
+<div class="category-menu">
+    <button type="button"
+            class="btn btn-solid-default toggle-category d-sm-block d-none">
+        All categories
+        <i class="fas fa-chevron-down d-xl-inline-block d-none"></i>
+    </button>
+    <div class="category-dropdown">
+        <div class="close-btn d-xl-none">
+            Category List
+            <span class="back-category">
+                <i class="fa fa-angle-left"></i>
+            </span>
+        </div>
+        <ul>
+
+            @foreach (var item in Model.Where(x => x.ParentId == null).ToList())
+            {
+                @if (item.SubMenu.Count() > 0)
+                {
+                    <li class="submenu">
+                        <a href="javascript:void(0)">@item.Name</a>
+                        <ul class="category-mega-menu">
+                            <li>
+                                <div class="row">
+                                    @for (var i = 0; i < 3; i++)
+                                    {
+                                        <div class="col-xl-3">
+                                            <div class="category-childmenu">
+                                                @if (i < item.SubMenu.Count())
+                                                {
+                                                    <div class="title-category-item">
+                                                        <h6>@item.SubMenu[i].Name</h6>
+                                                    </div>
+                                                    <ul>
+                                                        @foreach (var sub2 in item.SubMenu[i].SubMenu.Take((int)1.5 * maxColumnCount))
+                                                        {
+                                                            <li>
+                                                                <a href="shop-left-sidebar.html">@sub2.Name</a>
+                                                            </li>
+                                                        }
+                                                    </ul>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="col-xl-3">
+                                        <div class="category-banner">
+                                            <img src="~/Theme/assets/images/banner/1.jpg"
+                                         class="img-fluid blur-up lazyload" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="javascript:void(0)">@item.Name</a>
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+

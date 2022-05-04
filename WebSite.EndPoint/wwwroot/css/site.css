@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.title-category-item {
+/*    margin-top:15px;
+*/    margin-bottom:15px;
+}

@@ -1,6 +1,7 @@
 ﻿using Domain.Catalogs;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Application.Interfaces.Contexts
     {
         DbSet<CatalogBrand> CatalogBrands { get; set; } 
         DbSet<CatalogType> CatalogTypes { get; set; }
-
+        DbSet<CatalogItem> CatalogItems { get; set; }
 
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);

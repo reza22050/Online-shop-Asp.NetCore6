@@ -45,6 +45,7 @@
 
     <!-- Theme css -->
     <link id="color-link" rel="stylesheet" type="text/css" href="~/Theme/assets/css/demo1.css">
+    <link id="color-link" rel="stylesheet" type="text/css" href="~/css/site.css">
 
 </head>
 
@@ -69,7 +70,7 @@
                             <li>
                                 <div class="dropdown top-header-dropdown">
                                     <a class="dropdown-toggle" href="~/Theme/javascript:void(0)" role="button"
-                                        id="dropdownMenuLink" data-bs-toggle="dropdown">
+                                       id="dropdownMenuLink" data-bs-toggle="dropdown">
                                         <span>Login & Register</span>
                                         <i class="fas fa-chevron-down"></i>
                                     </a>
@@ -87,7 +88,7 @@
                             <li>
                                 <div class="dropdown top-header-dropdown">
                                     <a class="dropdown-toggle" href="~/Theme/javascript:void(0)" role="button"
-                                        id="dropdownMenuLink1" data-bs-toggle="dropdown">
+                                       id="dropdownMenuLink1" data-bs-toggle="dropdown">
                                         <span><b>$</b> Dollar</span>
                                         <i class="fas fa-chevron-down"></i>
                                     </a>
@@ -110,7 +111,8 @@
                             <li>
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" href="~/Theme/javascript:void(0)" role="button"
-                                        id="dropdownMenuLink2" data-bs-toggle="dropdown"><span>Language</span>
+                                       id="dropdownMenuLink2" data-bs-toggle="dropdown">
+                                        <span>Language</span>
                                         <i class="fas fa-chevron-down"></i>
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
@@ -147,224 +149,32 @@
                                         <img src="~/Theme/assets/images/logo.png" class="img-fluid blur-up lazyload" alt="logo">
                                     </a>
                                 </div>
+
+
+
+                                @*@await Component.InvokeAsync("GetMenuCategories")*@
                                 <div class="category-menu">
                                     <button type="button"
-                                        class="btn btn-solid-default toggle-category d-sm-block d-none">
+                                            class="btn btn-solid-default toggle-category d-sm-block d-none">
                                         All categories
                                         <i class="fas fa-chevron-down d-xl-inline-block d-none"></i>
                                     </button>
                                     <div class="category-dropdown">
                                         <div class="close-btn d-xl-none">
                                             Category List
-                                            <span class="back-category"><i class="fa fa-angle-left"></i>
+                                            <span class="back-category">
+                                                <i class="fa fa-angle-left"></i>
                                             </span>
                                         </div>
                                         <ul>
-                                            <li class="submenu">
-                                                <a href="~/Theme/javascript:void(0)">watches</a>
-                                                <ul class="category-mega-menu">
-                                                    <li>
-                                                        <div class="row">
-                                                            <div class="col-xl-3">
-                                                                <div class="category-childmenu">
-                                                                    <div class="title-category">
-                                                                        <h6>Watch Brands</h6>
-                                                                    </div>
-                                                                    <ul>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Coros</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Titan</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Citizen</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Casio</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Movado</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Tissot</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3">
-                                                                <div class="category-childmenu">
-                                                                    <div class="title-category">
-                                                                        <h6>Watch Display</h6>
-                                                                    </div>
-                                                                    <ul>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Analog</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Digital</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Hybrid</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Tactile</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Touchscreen</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3">
-                                                                <div class="category-childmenu">
-                                                                    <div class="title-category">
-                                                                        <h6>Watch Style</h6>
-                                                                    </div>
-                                                                    <ul>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Casual</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Dress</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Fashion</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/javascript:void(0)">Luxury</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3">
-                                                                <div class="category-banner">
-                                                                    <img src="~/Theme/assets/images/electronics/banner/4.jpg"
-                                                                        class="img-fluid blur-up lazyload" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="~/Theme/javascript:void(0)">footwear</a>
-                                            </li>
+                                            <menu-item></menu-item>
 
-                                            <li class="submenu">
-                                                <a href="~/Theme/javascript:void(0)">clothing</a>
-                                                <ul class="category-mega-menu">
-                                                    <li>
-                                                        <div class="row">
-                                                            <div class="col-xl-3">
-                                                                <div class="category-childmenu">
-                                                                    <div class="title-category">
-                                                                        <h6>Women's fashion</h6>
-                                                                    </div>
-                                                                    <ul>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Dress</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Skirts</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Western
-                                                                                wear</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Etahnic
-                                                                                wear</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Sports
-                                                                                wear</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3">
-                                                                <div class="category-childmenu">
-                                                                    <div class="title-category">
-                                                                        <h6>Men's fashion</h6>
-                                                                    </div>
-                                                                    <ul>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Sports
-                                                                                wear</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Etahnic
-                                                                                wear</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">Western
-                                                                                wear</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3">
-                                                                <div class="category-childmenu">
-                                                                    <div class="title-category">
-                                                                        <h6>Accesories</h6>
-                                                                    </div>
-                                                                    <ul>
-                                                                        <li>
-                                                                            <a
-                                                                                href="~/Theme/shop-left-sidebar.html">earrings</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">fashion
-                                                                                jewellery</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">ties</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">caps and
-                                                                                hats</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a
-                                                                                href="~/Theme/shop-left-sidebar.html">cufflinks</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a href="~/Theme/shop-left-sidebar.html">precious
-                                                                                jewellery</a>
-                                                                        </li>
-                                                                        <li>
-                                                                            <a
-                                                                                href="~/Theme/shop-left-sidebar.html">necklaces</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-xl-3">
-                                                                <div class="category-banner">
-                                                                    <img src="~/Theme/assets/images/banner/1.jpg"
-                                                                        class="img-fluid blur-up lazyload" alt="">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="~/Theme/javascript:void(0)">Accessories</a>
-                                            </li>
-                                            <li>
-                                                <a href="~/Theme/javascript:void(0)">Home & decor</a>
-                                            </li>
-                                            <li>
-                                                <a href="~/Theme/javascript:void(0)">Bags</a>
-                                            </li>
-                                            <li>
-                                                <a href="~/Theme/javascript:void(0)">Kitchan</a>
-                                            </li>
+
+
                                         </ul>
                                     </div>
                                 </div>
+
                             </div>
                             <nav>
                                 <div class="main-navbar">
@@ -374,7 +184,8 @@
                                             <li class="back-btn d-xl-none">
                                                 <div class="close-btn">
                                                     Menu
-                                                    <span class="mobile-back"><i class="fa fa-angle-left"></i>
+                                                    <span class="mobile-back">
+                                                        <i class="fa fa-angle-left"></i>
                                                     </span>
                                                 </div>
                                             </li>
@@ -389,10 +200,10 @@
                                                                         <ul>
                                                                             <li>
                                                                                 <a href="~/Theme/index.html"
-                                                                                    class="megamenu-image">
+                                                                                   class="megamenu-image">
                                                                                     <img src="~/Theme/assets/images/demo-image/fashion.jpg"
-                                                                                        class="img-fluid blur-up lazyload"
-                                                                                        alt="">
+                                                                                         class="img-fluid blur-up lazyload"
+                                                                                         alt="">
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
@@ -409,10 +220,10 @@
                                                                         <ul>
                                                                             <li>
                                                                                 <a href="~/Theme/flower-demo.html"
-                                                                                    class="megamenu-image">
+                                                                                   class="megamenu-image">
                                                                                     <img src="~/Theme/assets/images/demo-image/flower.jpg"
-                                                                                        class="img-fluid blur-up lazyload"
-                                                                                        alt="">
+                                                                                         class="img-fluid blur-up lazyload"
+                                                                                         alt="">
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
@@ -428,10 +239,10 @@
                                                                         <ul>
                                                                             <li>
                                                                                 <a href="~/Theme/furniture-demo.html"
-                                                                                    class="megamenu-image">
+                                                                                   class="megamenu-image">
                                                                                     <img src="~/Theme/assets/images/demo-image/furniture.jpg"
-                                                                                        class="img-fluid blur-up lazyload"
-                                                                                        alt="">
+                                                                                         class="img-fluid blur-up lazyload"
+                                                                                         alt="">
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
@@ -447,10 +258,10 @@
                                                                         <ul>
                                                                             <li>
                                                                                 <a href="~/Theme/electronic-demo.html"
-                                                                                    class="megamenu-image">
+                                                                                   class="megamenu-image">
                                                                                     <img src="~/Theme/assets/images/demo-image/electonic.jpg"
-                                                                                        class="img-fluid blur-up lazyload"
-                                                                                        alt="">
+                                                                                         class="img-fluid blur-up lazyload"
+                                                                                         alt="">
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
@@ -466,10 +277,10 @@
                                                                         <ul>
                                                                             <li>
                                                                                 <a href="~/Theme/shoes-demo.html"
-                                                                                    class="megamenu-image">
+                                                                                   class="megamenu-image">
                                                                                     <img src="~/Theme/assets/images/demo-image/shoes.jpg"
-                                                                                        class="img-fluid blur-up lazyload"
-                                                                                        alt="">
+                                                                                         class="img-fluid blur-up lazyload"
+                                                                                         alt="">
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
@@ -485,10 +296,10 @@
                                                                         <ul>
                                                                             <li>
                                                                                 <a href="~/Theme/vegetables-demo.html"
-                                                                                    class="megamenu-image">
+                                                                                   class="megamenu-image">
                                                                                     <img src="~/Theme/assets/images/demo-image/vagetables.jpg"
-                                                                                        class="img-fluid blur-up lazyload"
-                                                                                        alt="">
+                                                                                         class="img-fluid blur-up lazyload"
+                                                                                         alt="">
                                                                                 </a>
                                                                             </li>
                                                                         </ul>
@@ -515,8 +326,10 @@
                                                         <a href="~/Theme/shop-filter-hide.html">Shop Filter Hide</a>
                                                     </li>
                                                     <li>
-                                                        <a href="~/Theme/shop-left-sidebar.html">Shop Left Sidebar
-                                                            <span>Trending</span></a>
+                                                        <a href="~/Theme/shop-left-sidebar.html">
+                                                            Shop Left Sidebar
+                                                            <span>Trending</span>
+                                                        </a>
                                                     </li>
                                                     <li>
                                                         <a href="~/Theme/shop-list-infinite.html">Shop List Infinite</a>
@@ -534,8 +347,9 @@
                                                         <a href="~/Theme/shop-top-filter.html">Shop Top Filter</a>
                                                     </li>
                                                     <li>
-                                                        <a href="~/Theme/shop-with-category.html">Shop With Category <span
-                                                                class="tren-budge">New</span></a>
+                                                        <a href="~/Theme/shop-with-category.html">
+                                                            Shop With Category <span class="tren-budge">New</span>
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -564,15 +378,19 @@
                                                         <a href="~/Theme/product-right-sidebar.html">Product Right Sidebar</a>
                                                     </li>
                                                     <li>
-                                                        <a href="~/Theme/product-right-thumbnail.html">Product Right
-                                                            thumbnail</a>
+                                                        <a href="~/Theme/product-right-thumbnail.html">
+                                                            Product Right
+                                                            thumbnail
+                                                        </a>
                                                     </li>
                                                     <li>
                                                         <a href="~/Theme/product-sticky.html">Product Sticky</a>
                                                     </li>
                                                     <li>
-                                                        <a href="~/Theme/product-video-thumbnail.html">Product Video
-                                                            Thumbnail</a>
+                                                        <a href="~/Theme/product-video-thumbnail.html">
+                                                            Product Video
+                                                            Thumbnail
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </li>
@@ -591,38 +409,46 @@
                                                                     <div class="submenu-content opensubmegamenu">
                                                                         <ul class="list">
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/abandonment-email.html">Abandonment
-                                                                                    Email</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/abandonment-email.html">
+                                                                                    Abandonment
+                                                                                    Email
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/black-friday.html">Black
-                                                                                    Fridday</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/black-friday.html">
+                                                                                    Black
+                                                                                    Fridday
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/email-template-1.html">Email
-                                                                                    Template 1</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/email-template-1.html">
+                                                                                    Email
+                                                                                    Template 1
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/email-template-2.html">Email
-                                                                                    Template 2</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/email-template-2.html">
+                                                                                    Email
+                                                                                    Template 2
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/offer.html">Offer
-                                                                                    Template</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/offer.html">
+                                                                                    Offer
+                                                                                    Template
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/order-success-1.html">Order
-                                                                                    Success 1</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/order-success-1.html">
+                                                                                    Order
+                                                                                    Success 1
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/order-success-2.html">Order
-                                                                                    Success 2</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/order-success-2.html">
+                                                                                    Order
+                                                                                    Success 2
+                                                                                </a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -636,19 +462,22 @@
                                                                     <div class="submenu-content opensubmegamenu">
                                                                         <ul class="list">
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/product-review.html">Product
-                                                                                    Review</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/product-review.html">
+                                                                                    Product
+                                                                                    Review
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/reset-password.html">Reset
-                                                                                    Password</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/reset-password.html">
+                                                                                    Reset
+                                                                                    Password
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/welcome.html">Welcome
-                                                                                    Template</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/email-template/welcome.html">
+                                                                                    Welcome
+                                                                                    Template
+                                                                                </a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -660,16 +489,22 @@
                                                                     <div class="submenu-content opensubmegamenu">
                                                                         <ul class="list">
                                                                             <li>
-                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/invoice/invoice-1.html">Invoice
-                                                                                    1 Template</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/invoice/invoice-1.html">
+                                                                                    Invoice
+                                                                                    1 Template
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/invoice/invoice-2.html">Invoice
-                                                                                    2 Template</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/invoice/invoice-2.html">
+                                                                                    Invoice
+                                                                                    2 Template
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/invoice/invoice-3.html">Invoice
-                                                                                    3 Template</a>
+                                                                                <a href="~/Theme/https://themes.pixelstrap.com/voxo/invoice/invoice-3.html">
+                                                                                    Invoice
+                                                                                    3 Template
+                                                                                </a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -684,32 +519,46 @@
                                                                     <div class="submenu-content opensubmegamenu">
                                                                         <ul class="list">
                                                                             <li>
-                                                                                <a href="~/Theme/portfolio-2-grid.html">Portfolio
-                                                                                    2 Grid</a>
+                                                                                <a href="~/Theme/portfolio-2-grid.html">
+                                                                                    Portfolio
+                                                                                    2 Grid
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/portfolio-2-masonary.html">Portfolio
-                                                                                    2 Masonary</a>
+                                                                                <a href="~/Theme/portfolio-2-masonary.html">
+                                                                                    Portfolio
+                                                                                    2 Masonary
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/portfolio-3-grid.html">Portfolio
-                                                                                    3 Grid</a>
+                                                                                <a href="~/Theme/portfolio-3-grid.html">
+                                                                                    Portfolio
+                                                                                    3 Grid
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/portfolio-3-masonary.html">Portfolio
-                                                                                    3 Masonary</a>
+                                                                                <a href="~/Theme/portfolio-3-masonary.html">
+                                                                                    Portfolio
+                                                                                    3 Masonary
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/portfolio-4-grid.html">Portfolio
-                                                                                    4 Grid</a>
+                                                                                <a href="~/Theme/portfolio-4-grid.html">
+                                                                                    Portfolio
+                                                                                    4 Grid
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/portfolio-4-masonary.html">Portfolio
-                                                                                    4 Masonary</a>
+                                                                                <a href="~/Theme/portfolio-4-masonary.html">
+                                                                                    Portfolio
+                                                                                    4 Masonary
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/portfolio-no-space.html">Portfolio
-                                                                                    No Space</a>
+                                                                                <a href="~/Theme/portfolio-no-space.html">
+                                                                                    Portfolio
+                                                                                    No Space
+                                                                                </a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -724,33 +573,46 @@
                                                                     <div class="submenu-content opensubmegamenu">
                                                                         <ul class="list">
                                                                             <li>
-                                                                                <a href="~/Theme/element-button.html">Element
-                                                                                    Button</a>
+                                                                                <a href="~/Theme/element-button.html">
+                                                                                    Element
+                                                                                    Button
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/element-category.html">Element
-                                                                                    Category</a>
+                                                                                <a href="~/Theme/element-category.html">
+                                                                                    Element
+                                                                                    Category
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a
-                                                                                    href="~/Theme/element-collection-banner.html">Element
-                                                                                    Collection Banner</a>
+                                                                                <a href="~/Theme/element-collection-banner.html">
+                                                                                    Element
+                                                                                    Collection Banner
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/element-deal-banner.html">Element
-                                                                                    Deal Banner</a>
+                                                                                <a href="~/Theme/element-deal-banner.html">
+                                                                                    Element
+                                                                                    Deal Banner
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/element-header.html">Element
-                                                                                    Header</a>
+                                                                                <a href="~/Theme/element-header.html">
+                                                                                    Element
+                                                                                    Header
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/element-home.html">Element
-                                                                                    Home</a>
+                                                                                <a href="~/Theme/element-home.html">
+                                                                                    Element
+                                                                                    Home
+                                                                                </a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/element-product.html">Element
-                                                                                    Product</a>
+                                                                                <a href="~/Theme/element-product.html">
+                                                                                    Element
+                                                                                    Product
+                                                                                </a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -768,8 +630,10 @@
                                                                                 <a href="~/Theme/furniture-demo.html">Bottom</a>
                                                                             </li>
                                                                             <li>
-                                                                                <a href="~/Theme/electronic-demo.html">Bottom
-                                                                                    Left</a>
+                                                                                <a href="~/Theme/electronic-demo.html">
+                                                                                    Bottom
+                                                                                    Left
+                                                                                </a>
                                                                             </li>
                                                                             <li>
                                                                                 <a href="~/Theme/index.html">Bottom Right</a>
@@ -785,8 +649,10 @@
                                                                     <div class="submenu-content opensubmegamenu">
                                                                         <ul class="list">
                                                                             <li>
-                                                                                <a href="~/Theme/vegetables-demo.html">Ajax
-                                                                                    Search</a>
+                                                                                <a href="~/Theme/vegetables-demo.html">
+                                                                                    Ajax
+                                                                                    Search
+                                                                                </a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -880,11 +746,15 @@
                                                 <img src="~/Theme/assets/images/pwa.png" class="img-fluid" alt="">
                                                 <div class="mobile-contain">
                                                     <h5>Enjoy app-like experience</h5>
-                                                    <p class="font-light">With this Screen option you can use Website
-                                                        like an App.</p>
+                                                    <p class="font-light">
+                                                        With this Screen option you can use Website
+                                                        like an App.
+                                                    </p>
                                                     <a href="~/Theme/javascript:void(0)" id="installApp"
-                                                        class="btn btn-solid-default btn-spacing w-100">ADD TO
-                                                        HOMESCREEN</a>
+                                                       class="btn btn-solid-default btn-spacing w-100">
+                                                        ADD TO
+                                                        HOMESCREEN
+                                                    </a>
                                                 </div>
                                             </li>
                                         </ul>
@@ -939,19 +809,19 @@
                                                     <li>
                                                         <div class="media">
                                                             <img src="~/Theme/assets/images/fashion/product/front/1.jpg"
-                                                                class="img-fluid blur-up lazyload" alt="">
+                                                                 class="img-fluid blur-up lazyload" alt="">
                                                             <div class="media-body">
                                                                 <h6>Slim Fit Plastic Coat</h6>
                                                                 <div class="qty-with-price">
                                                                     <span>$78.00</span>
                                                                     <span>
                                                                         <input type="number" class="form-control"
-                                                                            value="1">
+                                                                               value="1">
                                                                     </span>
                                                                 </div>
                                                             </div>
                                                             <button type="button" class="btn-close d-block d-md-none"
-                                                                aria-label="Close">
+                                                                    aria-label="Close">
                                                                 <i class="fas fa-times"></i>
                                                             </button>
                                                         </div>
@@ -959,19 +829,19 @@
                                                     <li>
                                                         <div class="media">
                                                             <img src="~/Theme/assets/images/fashion/product/front/7.jpg"
-                                                                class="img-fluid blur-up lazyload" alt="">
+                                                                 class="img-fluid blur-up lazyload" alt="">
                                                             <div class="media-body">
                                                                 <h6>Womens Stylish Jacket</h6>
                                                                 <div class="qty-with-price">
                                                                     <span>$24.00</span>
                                                                     <span>
                                                                         <input type="number" class="form-control"
-                                                                            value="1">
+                                                                               value="1">
                                                                     </span>
                                                                 </div>
                                                             </div>
                                                             <button type="button" class="btn-close d-block d-md-none"
-                                                                aria-label="Close">
+                                                                    aria-label="Close">
                                                                 <i class="fas fa-times"></i>
                                                             </button>
                                                         </div>
@@ -979,10 +849,12 @@
                                                 </ul>
                                             </div>
                                             <div class="cart-btn">
-                                                <h6 class="cart-total"><span class="font-light">Total:</span> $
-                                                    542.00</h6>
+                                                <h6 class="cart-total">
+                                                    <span class="font-light">Total:</span> $
+                                                    542.00
+                                                </h6>
                                                 <button onclick="location.href = 'cart.html';" type="button"
-                                                    class="btn btn-solid-default btn-block">
+                                                        class="btn btn-solid-default btn-block">
                                                     Proceed to payment
                                                 </button>
                                             </div>
@@ -1005,7 +877,7 @@
                                         <li>
                                             <div class="product-cart media">
                                                 <img src="~/Theme/assets/images/electronics/product/1.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
+                                                     class="img-fluid blur-up lazyload" alt="">
                                                 <div class="media-body">
                                                     <a href="~/Theme/javascript:void(0)">
                                                         <h6 class="mb-1">New Smart Watch 4 ERT2</h6>
@@ -1034,7 +906,7 @@
                                         <li>
                                             <div class="product-cart media">
                                                 <img src="~/Theme/assets/images/electronics/product/5.jpg"
-                                                    class="img-fluid blur-up lazyload" alt="">
+                                                     class="img-fluid blur-up lazyload" alt="">
                                                 <div class="media-body">
                                                     <a href="~/Theme/javascript:void(0)">
                                                         <h6 class="mb-1">Powermatic 900 W Juicer</h6>
@@ -1070,7 +942,6 @@
         </div>
     </header>
     <!-- header end -->
-
     <!-- mobile fix menu start -->
     <div class="mobile-menu d-sm-none">
         <ul>
@@ -1107,8 +978,7 @@
         </ul>
     </div>
     <!-- mobile fix menu end -->
-
-      @RenderBody()
+    @RenderBody()
 
     <!-- footer start -->
     <footer class="footer-sm-space">
@@ -1131,8 +1001,12 @@
 
                                 </li>
                                 <li>
-                                    <span><b>Address:</b><span class="font-light"> 1418 Riverwood Drive, Suite 3245
-                                            Cottonwood, CA 96052, United States</span></span>
+                                    <span>
+                                        <b>Address:</b><span class="font-light">
+                                            1418 Riverwood Drive, Suite 3245
+                                            Cottonwood, CA 96052, United States
+                                        </span>
+                                    </span>
                                 </li>
                                 <li>
                                     <span><b>Email:</b><span class="font-light"> Voxo123@gmail.com</span></span>
@@ -1225,10 +1099,12 @@
                             <div class="form-newsletter">
                                 <div class="input-group mb-4">
                                     <input type="text" class="form-control" placeholder="Your Email Address">
-                                    <span class="input-group-text" id="basic-addon4"><i
-                                            class="fas fa-arrow-right"></i></span>
+                                    <span class="input-group-text" id="basic-addon4">
+                                        <i class="fas fa-arrow-right"></i>
+                                    </span>
                                 </div>
-                                <p class="font-dark mb-0">Keep up to date with our latest news and special offers.
+                                <p class="font-dark mb-0">
+                                    Keep up to date with our latest news and special offers.
                                 </p>
                             </div>
                         </div>
@@ -1245,22 +1121,26 @@
                             <li>
                                 <a href="~/Theme/javascript:void(0)">
                                     <img src="~/Theme/assets/images/payment-icon/1.jpg" class="img-fluid blur-up lazyload"
-                                        alt="payment icon"></a>
+                                         alt="payment icon">
+                                </a>
                             </li>
                             <li>
                                 <a href="~/Theme/javascript:void(0)">
                                     <img src="~/Theme/assets/images/payment-icon/2.jpg" class="img-fluid blur-up lazyload"
-                                        alt="payment icon"></a>
+                                         alt="payment icon">
+                                </a>
                             </li>
                             <li>
                                 <a href="~/Theme/javascript:void(0)">
                                     <img src="~/Theme/assets/images/payment-icon/3.jpg" class="img-fluid blur-up lazyload"
-                                        alt="payment icon"></a>
+                                         alt="payment icon">
+                                </a>
                             </li>
                             <li>
                                 <a href="~/Theme/javascript:void(0)">
                                     <img src="~/Theme/assets/images/payment-icon/4.jpg" class="img-fluid blur-up lazyload"
-                                        alt="payment icon"></a>
+                                         alt="payment icon">
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -1272,10 +1152,9 @@
         </div>
     </footer>
     <!-- footer end -->
-
     <!-- Cart Successful Start -->
     <div class="modal fade cart-modal" id="addtocart" tabindex="-1" role="dialog" aria-label="myModalLabel"
-        aria-hidden="true">
+         aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content ">
                 <div class="modal-header">
@@ -1292,7 +1171,7 @@
                             <div class="modal-product">
                                 <div class="modal-contain-img">
                                     <img src="~/Theme/assets/images/fashion/instagram/4.jpg" class="img-fluid blur-up lazyload"
-                                        alt="">
+                                         alt="">
                                 </div>
                                 <div class="modal-contain-details">
                                     <h4>Premier Cropped Skinny Jean</h4>
@@ -1302,11 +1181,15 @@
                                     </div>
                                     <div class="shop-cart-button mt-3">
                                         <a href="~/Theme/shop-left-sidebar.html"
-                                            class="btn default-light-theme conti-button default-theme default-theme-2 rounded">CONTINUE
-                                            SHOPPING</a>
+                                           class="btn default-light-theme conti-button default-theme default-theme-2 rounded">
+                                            CONTINUE
+                                            SHOPPING
+                                        </a>
                                         <a href="~/Theme/cart.html"
-                                            class="btn default-light-theme conti-button default-theme default-theme-2 rounded">VIEW
-                                            CART</a>
+                                           class="btn default-light-theme conti-button default-theme default-theme-2 rounded">
+                                            VIEW
+                                            CART
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -1317,15 +1200,14 @@
                         <div class="container">
                             <div class="row m-0">
                                 <div class="col-sm-12 p-0">
-                                    <div
-                                        class="product-wrapper product-style-2 slide-4 p-0 light-arrow bottom-space spacing-slider">
+                                    <div class="product-wrapper product-style-2 slide-4 p-0 light-arrow bottom-space spacing-slider">
                                         <div>
                                             <div class="product-box">
                                                 <div class="img-wrapper">
                                                     <div class="front">
                                                         <a href="~/Theme/product-left-sidebar.html">
                                                             <img src="~/Theme/assets/images/fashion/product/front/1.jpg"
-                                                                class="bg-img blur-up lazyload" alt="">
+                                                                 class="bg-img blur-up lazyload" alt="">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -1346,7 +1228,7 @@
                                                     <div class="front">
                                                         <a href="~/Theme/product-left-sidebar.html">
                                                             <img src="~/Theme/assets/images/fashion/product/front/2.jpg"
-                                                                class="bg-img blur-up lazyload" alt="">
+                                                                 class="bg-img blur-up lazyload" alt="">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -1367,7 +1249,7 @@
                                                     <div class="front">
                                                         <a href="~/Theme/product-left-sidebar.html">
                                                             <img src="~/Theme/assets/images/fashion/product/front/3.jpg"
-                                                                class="bg-img blur-up lazyload" alt="">
+                                                                 class="bg-img blur-up lazyload" alt="">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -1388,7 +1270,7 @@
                                                     <div class="front">
                                                         <a href="~/Theme/product-left-sidebar.html">
                                                             <img src="~/Theme/assets/images/fashion/product/front/4.jpg"
-                                                                class="bg-img blur-up lazyload" alt="">
+                                                                 class="bg-img blur-up lazyload" alt="">
                                                         </a>
                                                     </div>
                                                 </div>
@@ -1412,7 +1294,6 @@
         </div>
     </div>
     <!-- Cart Successful End -->
-
     <!-- Quick view modal start -->
     <div class="modal fade quick-view-modal" id="quick-view">
         <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -1425,37 +1306,37 @@
                                 <div class="quick-view-slider ratio_2">
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/1.jpg" class="img-fluid bg-img"
-                                            alt="product">
+                                             alt="product">
                                     </div>
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/8.jpg" class="img-fluid bg-img"
-                                            alt="product">
+                                             alt="product">
                                     </div>
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/9.jpg" class="img-fluid bg-img"
-                                            alt="product">
+                                             alt="product">
                                     </div>
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/8.jpg" class="img-fluid bg-img"
-                                            alt="product">
+                                             alt="product">
                                     </div>
                                 </div>
                                 <div class="quick-nav">
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/1.jpg"
-                                            class="img-fluid blur-up lazyload" alt="product">
+                                             class="img-fluid blur-up lazyload" alt="product">
                                     </div>
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/8.jpg"
-                                            class="img-fluid blur-up lazyload" alt="product">
+                                             class="img-fluid blur-up lazyload" alt="product">
                                     </div>
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/9.jpg"
-                                            class="img-fluid blur-up lazyload" alt="product">
+                                             class="img-fluid blur-up lazyload" alt="product">
                                     </div>
                                     <div>
                                         <img src="~/Theme/assets/images/electronics/product/8.jpg"
-                                            class="img-fluid blur-up lazyload" alt="product">
+                                             class="img-fluid blur-up lazyload" alt="product">
                                     </div>
                                 </div>
                             </div>
@@ -1508,10 +1389,12 @@
                                     </ul>
                                 </div>
                                 <div class="product-btns">
-                                    <a href="~/Theme/cart.html" class="btn btn-solid-default btn-sm" data-bs-dismiss="modal">Add
-                                        to cart</a>
+                                    <a href="~/Theme/cart.html" class="btn btn-solid-default btn-sm" data-bs-dismiss="modal">
+                                        Add
+                                        to cart
+                                    </a>
                                     <a href="~/Theme/product-left-sidebar.html" class="btn btn-solid-default btn-sm"
-                                        data-bs-dismiss="modal">View details</a>
+                                       data-bs-dismiss="modal">View details</a>
                                 </div>
                             </div>
                         </div>
@@ -1521,7 +1404,6 @@
         </div>
     </div>
     <!-- Quick view modal end -->
-
     <!-- Newsletter modal start -->
     <div class="modal fade newletter-modal" id="newsletter">
         <div class="modal-dialog modal-dialog-centered">
@@ -1544,7 +1426,9 @@
 
                         <div class="cancel-button text-center">
                             <button class="btn btn-solid-default w-100" data-bs-dismiss="modal"
-                                type="button">Submit</button>
+                                    type="button">
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1552,7 +1436,6 @@
         </div>
     </div>
     <!-- Newsletter modal end -->
-
     <!-- Coockie Section Start -->
     <div class="cookie-bar-section cookiebar-left-section">
         <img src="~/Theme/assets/images/cookie.png" alt="">
@@ -1566,7 +1449,6 @@
         </div>
     </div>
     <!-- Coockie Section End -->
-
     <!-- theme Setting Start -->
     <div class="theme-setting">
         <ul>
@@ -1578,12 +1460,11 @@
             </li>
             <li class="color-picker">
                 <input type="color" class="form-control form-control-color" id="ColorPicker1" value="#0163d2"
-                    title="Choose your color">
+                       title="Choose your color">
             </li>
         </ul>
     </div>
     <!-- theme Setting End -->
-
     <!-- tap to top Section Start -->
     <div class="tap-to-top">
         <a href="~/Theme/#home">

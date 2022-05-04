@@ -1,0 +1,328 @@
+﻿@page
+@model Admin.EndPoint.Pages.CatalogItems.CreateModel
+@{
+}
+<div class="page-body">
+    <div class="title-header">
+        <h5>Add New Catalog Item</h5>
+    </div>
+
+    <!-- New Product Add Start -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="theme-form theme-form-2 mega-form" asp-antiforgery="true" id ="createForm" onsubmit="return sendDataToServer(event)">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-header-2">
+                                        <h5>Catalog Item Information</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Catalog Item Name</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" placeholder="Catalog Item Name" id="Name" asp-for="Data.Name">
+                                                <span asp-validation-for="Data.Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-2 col-form-label form-label-title">Brand</label>
+                                            <div class="col-sm-10">
+                                                <select class="js-example-basic-single w-100" name="Brand" asp-items="@Model.Brands" id="Brand">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-2 col-form-label form-label-title">Category</label>
+                                            <div class="col-sm-10">
+                                                <select class="js-example-basic-single w-100" name="Category" asp-items="@Model.Categories" id="Category">
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Available Stock</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" placeholder="Available Stock" id="AvailableStock" asp-for="Data.AvailableStock">
+                                                <span asp-validation-for="Data.AvailableStock" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Restock Threshold</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" placeholder="Restock Threshold" id="RestockThreshold" asp-for="Data.RestockThreshold">
+                                                <span asp-validation-for="Data.RestockThreshold" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Max Stock Threshold</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" placeholder="Max Stock Threshold" id="MaxStockThreshold" asp-for="Data.MaxStockThreshold">
+                                                <span asp-validation-for="Data.MaxStockThreshold" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Price</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" placeholder="Price" id="Price" asp-for="Data.Price">
+                                                <span asp-validation-for="Data.Price" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-2 col-form-label form-label-title">Images</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control form-choose" type="file" id="Images" multiple accept="image/*">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-header-2">
+                                        <h5>Features</h5>
+                                        <div class="row">
+                                            <div class="mb-4 col-sm-3 align-items-center">
+                                                <label class="col-sm-6 col-form-label form-label-title">Group</label>
+                                                <input class="form-control col-sm-6" type="text" placeholder="Group Name" id="txtGroup">
+                                            </div>
+                                            <div class="mb-4 col-sm-3 align-items-center">
+                                                <label class="col-sm-6 col-form-label form-label-title">Feature key</label>
+                                                <input class="form-control col-sm-6" type="text" placeholder="Display Name" id="txtDisplayName">
+                                            </div>
+                                            <div class="mb-4 col-sm-3 align-items-center">
+                                                <label class="col-sm-6 col-form-label form-label-title">Feature value</label>
+                                                <input class="form-control col-sm-6" type="text" placeholder="Value Name" id="txtValue">
+                                            </div>
+
+                                            <div class="mt-6 col-sm-3 align-items-center">
+                                                <fieldset class="form-group">
+                                                    <a id="btnAddFeatures" class="align-items-center btn btn-theme">Add New Feature</a>
+                                                </fieldset>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-4 col-sm-12 align-items-center">
+                                            <div class="table-responsive table-desi">
+                                                <table class="user-table table table-striped" id="tbl_Features">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Group</th>
+                                                            <th>Feature key</th>
+                                                            <th>Feature value</th>
+                                                            <th></th>
+                                                    </thead>
+                                                    <tbody>
+                                                        @* <tr>
+                                                            <td> +802-370-2430</td>
+
+                                                            <td>EverettCGreen@rhyta.com</td>
+
+                                                            <td class="font-primary">America</td>
+
+                                                            <td>
+                                                            <a href="javascript:void(0)">
+                                                            <span class="lnr lnr-trash"></span>
+                                                            </a>
+                                                            </td>
+                                                            </tr>*@
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-header-2">
+                                        <h5>Description</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <label class="form-label-title col-sm-2 mb-0"> Description </label>
+                                                <div class="col-sm-10">
+                                                    <textarea id="Description" asp-for="Data.Description" class="form-control " rows="5"></textarea>
+                                                    <span asp-validation-for="Data.Description" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <button class="btn btn-primary me-3">Submit</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- New Product Add End -->
+    <!-- footer Start -->
+    <div class="container-fluid">
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-12 footer-copyright text-center">
+                    <p class="mb-0">Copyright 2022 © Reza22050</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- footer En -->
+</div>
+<!-- Container-fluid End -->
+@section Scripts
+{
+<!-- ck editor js -->
+@*<script src="~/theme/assets/js/ckeditor.js"></script>
+<script src="~/theme/assets/js/ckeditor-custom.js"></script>
+*@
+<script src="~/Sweetalert2/sweetalert2.min.js"></script>
+<link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+@{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+
+  <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Description', {
+            height: 270,
+        });
+    </script>
+
+<script>
+    $("#btnAddFeatures").on("click", function(){
+        var txtDisplayName= $("#txtDisplayName").val();
+        var txtValue= $("#txtValue").val();
+        var txtGroup= $("#txtGroup").val();
+
+        if(txtDisplayName == "" || txtValue == "" || txtGroup=="")
+        {
+                swal.fire('alert!', 'fill all blanks please!', 'warning');
+        }
+        else
+        {
+            $('#tbl_Features tbody').append('<tr> <td>'+txtGroup +'</td><td>'+txtDisplayName+'</td><td class="font-primary">'+txtValue+'</td><td><a class="idFeatures btnDelete"> <span class="lnr lnr-trash"></span></a></td> </tr>');
+            $("#txtDisplayName").val('');
+            $("#txtValue").val('');
+        }
+    });
+
+       $("#tbl_Features").on('click','.idFeatures', function(){
+            $(this).closest('tr').remove();
+        });
+
+        function sendDataToServer(e)
+        {
+            e.preventDefault();
+            var form = $("#createForm");
+            form.validate();
+            if(!form.validate())
+            {
+                swal.fire('alert!', "Enter fields correctly please...",'warning');
+                return false;
+            }
+
+            var data = new FormData();
+            data.append("Name", $("#Name").val());
+            data.append("AvailableStock", $("#AvailableStock").val());
+            data.append("RestockThreshold", $("#RestockThreshold").val());
+            data.append("MaxStockThreshold", $("#MaxStockThreshold").val());
+            data.append("Price", $("#Price").val());
+            data.append("Description", CKEDITOR.instances['Description'].getData());
+            data.append("CatalogTypeId", $("#Category").find('option:selected').val());
+            data.append("CatalogBrandId", $("#Brand").find('option:selected').val());
+
+            //Get Images
+            var catalogImages = document.getElementById("Images");
+            if(catalogImages.files.length>0)
+            {
+                for(var i = 0; i<catalogImages.files.length; i++)
+                {
+                    data.append('Images-'+i,catalogImages.files[i]);
+                }
+            }
+
+            // Get Features
+            var dataFeaturesViewModel = $('#tbl_Features tr:gt(0)').map(function(){
+                return {
+                    Group: $(this.cells[0]).text(),
+                    DisplayName: $(this.cells[1]).text(),
+                    Value: $(this.cells[2]).text(),
+                }
+            }).get();
+        
+
+            $.each(dataFeaturesViewModel,function (i,val){
+                data.append('Features[' + i + '].Group', val.Group);
+                data.append('Features[' + i + '].key', val.DisplayName);
+                data.append('Features[' + i + '].Value', val.Value);
+                
+            });
+
+            var ajaxRequest = $.ajax({
+                type:"POST",
+                url: "create",
+                contentType: false,
+                processData: false,
+                data: data,
+                headers: {"RequestVerificationToken": $('input[name="__RequestVerificationToken"]').val() },
+                success: function (data){
+                    if(data.isSuccess)
+                    {
+                        swal.fire('success', 'Was successfully added', 'success')
+                        .then(function(isConfirm){
+                            window.location.href = "/catalogitems";
+                        });
+                    }
+                    else
+                    {
+                         swal.fire('Warning', 'Error occured...', 'warning');
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError)
+                {
+                    alert(xhr.status);
+                    alert(xhr.thrownError);
+                }
+            });
+
+
+        }
+
+</script>
+}
