@@ -1,5 +1,5 @@
 ﻿@page
-@model Admin.EndPoint.Pages.CatalogType.IndexModel
+@model Admin.EndPoint.Pages.CatalogItems.IndexModel
 @{
 }
       <!-- Container-fluid starts-->
@@ -19,37 +19,43 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Id</th>
-                                                        <th>Type</th>
-                                                        <th>SubTypeCount</th>
-                                                        <th>Option</th>
+                                                        <th>Name</th>
+                                                        <th>Category</th>
+                                                        <th>Brand</th>
+                                                        <th>Price</th>
+                                                        <th>AvailableStock</th>
+                                                        <th>RestockThreshold</th>
+                                                        <th>MaxStockThreshold</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
+
                                                 <tbody>
-                                                   @foreach (var item in Model.CataloType.Data)
+                                                   @foreach (var item in Model.CatalogItem.Data)
                                                    {
                                                        <tr>
                                                         <td>@item.Id</td>
+                                                        <td>@item.Name</td>
                                                         <td>@item.Type</td>
-                                                        <td>@item.SubTypeCount</td>
+                                                        <td>@item.Brand</td>
+                                                        <td>@item.Price.ToString("n0")</td>
+                                                        <td>@item.AvailableStock</td>
+                                                        <td>@item.RestockThreshold</td>
+                                                        <td>@item.MaxStockThreshold</td>
                                                         <td>
                                                             <ul>
                                                                 <li>
-                                                                    <a asp-page="edit" asp-route-id="@item.Id">
+                                                                    <a>
                                                                         <span class="lnr lnr-pencil"></span>
                                                                     </a>
                                                                 </li>
                                                                 <li>
-                                                                    <a asp-page="delete" asp-route-id="@item.Id">
+                                                                    <a>
                                                                         <i class="far fa-trash-alt theme-color"></i>
                                                                     </a>
                                                                 </li>
                                                                  <li>
-                                                                    <a asp-page="create" asp-route-parentId="@item.Id">
-                                                                        <i class="lnr lnr-plus-circle"></i>
-                                                                    </a>
-                                                                </li>
-                                                                 <li>
-                                                                    <a asp-page="index" asp-route-parentId="@item.Id">
+                                                                    <a asp-page="Detail">
                                                                         <span class="lnr lnr-eye"></span>
                                                                     </a>
                                                                 </li>
@@ -58,6 +64,7 @@
                                                         </td>
                                                     </tr>
                                                    }
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -103,7 +110,7 @@
                     <footer class="footer">
                         <div class="row">
                             <div class="col-md-12 footer-copyright text-center">
-                                <p class="mb-0">Copyright 2021 © Reza22050</p>
+                                <p class="mb-0">Copyright 2022 © Reza22050</p>
                             </div>
                         </div>
                     </footer>

@@ -1,4 +1,6 @@
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
+using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
+using Application.Catalogs.CatalogItems.UriComposer;
 using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
 using Application.Visitors.SaveVisitorInfo;
@@ -40,6 +42,8 @@ builder.Services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>
 builder.Services.AddTransient<ISaveVisitorInfoService, SaveVisitorInfoService>();
 builder.Services.AddTransient<IVisitorOnlineService, VisitorOnlineService>();
 builder.Services.AddTransient<IGetMenuItemService, GetMenuItemService>();
+builder.Services.AddTransient<GetCatalogItemPLPService, GetCatalogItemPLPService>();
+builder.Services.AddTransient<IUriComposerServie, UriComposerServie>();
 
 builder.Services.AddScoped<SaveVisitorFilter>();
 builder.Services.AddSignalR();
