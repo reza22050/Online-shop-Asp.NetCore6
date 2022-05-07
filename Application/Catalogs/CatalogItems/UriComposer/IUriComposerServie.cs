@@ -19,3 +19,4 @@ namespace Application.Catalogs.CatalogItems.UriComposer
         }
     }
 }
+ 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Catalogs.CatalogItems.GetCatalogItemPLP
 {
-    internal interface IGetCatalogItemPLPService
+    public interface IGetCatalogItemPLPService
     {
         PaginatedItemsDto<CatalogPLPDto> Execute(int page, int pageSize);
     }
@@ -42,7 +42,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPLP
                     Price = x.Price,
                     Type = x.CatalogType.Type,
                     Rate = 3,
-                    Image = _uriComposerServie.ComposerImageUri(x.CatalogItemImages.First().Src)
+                    Image = _uriComposerServie.ComposerImageUri(x.CatalogItemImages.FirstOrDefault().Src)
                 }).ToList();
 
             return new PaginatedItemsDto<CatalogPLPDto>(page, pageSize, rowCount, data);
