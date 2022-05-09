@@ -21,3 +21,8 @@ body {
 /*    margin-top:15px;
 */    margin-bottom:15px;
 }
+
+.remove-basket-item {
+    border: none;
+    background-color: #fff;
+}

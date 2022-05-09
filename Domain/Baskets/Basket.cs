@@ -51,15 +51,19 @@ namespace Domain.Baskets
         public BasketItem(int catalogItemId,int quantity, decimal unitPrice)
         {
             CatalogItemId = catalogItemId;
-            Quantity = quantity;
+            SetQuantity(quantity);
             UnitPrice = unitPrice;
         }
 
         public void AddQuantity(int quantity)
         {
-            Quantity += Quantity;
+            Quantity += quantity;
         }
 
+        public void SetQuantity(int quantity)
+        {
+            Quantity = quantity;
+        }
     } 
 
 

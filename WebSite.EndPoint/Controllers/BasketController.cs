@@ -2,9 +2,6 @@
 using Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Domain.Users;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 namespace WebSite.EndPoint.Controllers
 {
     public class BasketController : Controller
@@ -62,6 +59,19 @@ namespace WebSite.EndPoint.Controllers
             var cookieOptions = new CookieOptions { IsEssential = true };
             cookieOptions.Expires = DateTime.Now.AddYears(2);
             Response.Cookies.Append(basketCookieName, UserId, cookieOptions);
+        }
+
+        [HttpPost]
+        public IActionResult RemoveItemFromBasket(int ItemId)
+        {
+            _basketService.RemoveItemFromBasket(ItemId);
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult SetQuantity(int basketItemId, int quantity)
+        {
+            return Json(_basketService.SetQuantities(basketItemId, quantity));
         }
 
 

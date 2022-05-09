@@ -1,5 +1,235 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Application.BasketsService
+@model BasketDto
 @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout_Product.cshtml";
+}
+
+
+
+<!-- Breadcrumb section start -->
+<section class="breadcrumb-section section-b-space">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>Shopping Cart</h3>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb section end -->
+<!-- Cart Section Start -->
+<section class="cart-section section-b-space">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="count-down">
+                    <h5>
+                        Your cart will be expired in <span class="count-timer theme-color" id="timer"></span>
+                        minutes !
+                    </h5>
+                    <button type="button" onclick="location.href = 'checkout.html';"
+                            class="btn btn-solid-default btn-sm fw-bold">
+                        Check Out
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-sm-12 table-responsive mt-4">
+                <table class="table cart-table">
+                    <thead>
+                        <tr class="table-head">
+                            <th scope="col">image</th>
+                            <th scope="col">product name</th>
+                            <th scope="col">price</th>
+                            <th scope="col">quantity</th>
+                            <th scope="col">action</th>
+                            <th scope="col">total</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <a href="product-left-sidebar.html">
+                                        <img src="@item.ImageUrl" class=" blur-up lazyload"
+                                         alt="">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="product-left-sidebar.html">@item.CatalogName </a>
+                                    <div class="mobile-cart-content row">
+                                        <div class="col">
+                                            <div class="qty-box">
+                                                <div class="input-group">
+                                                    <input type="text" name="quantity" class="form-control input-number"
+                                                       value="@item.Quantity.ToString("n2")" id= "quantity-d-@item.Id"  onchange="SetQuantity('@item.Id',2)" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h2>$@item.UnitPrice.ToString("n2")</h2>
+                                        </div>
+                                        <div class="col">
+                                            <h2 class="td-color">
+                                                <form asp-action="RemoveItemFromBasket" asp-controller="Basket" method="post">
+                                                    <input type="hidden" value="@item.Id" name="ItemId" />
+                                                    <button type="submit" class="remove-basket-item">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            </h2>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h2>$@item.UnitPrice</h2>
+                                </td>
+                                <td>
+                                    <div class="qty-box">
+                                        <div class="input-group">
+                                            <input type="number" name="quantity" class="form-control input-number"
+                                               value="@item.Quantity.ToString("n2")" id= "quantity-m-@item.Id" onchange="SetQuantity('@item.Id',1)" >
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <form asp-action="RemoveItemFromBasket" asp-controller="Basket" method="post">
+                                        <input type="hidden" value="@item.Id" name="ItemId" />
+                                        <button type="submit" class="remove-basket-item">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <h2 class="td-color">$@{
+                                            (item.Quantity * item.UnitPrice).ToString("n2");
+                                        }</h2>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    }
+
+                </table>
+            </div>
+
+            <div class="col-12 mt-md-5 mt-4">
+                <div class="row">
+                    <div class="col-sm-7 col-5 order-1">
+                        <div class="left-side-button text-end d-flex d-block justify-content-end">
+                            <a href="javascript:void(0)"
+                               class="text-decoration-underline theme-color d-block text-capitalize">
+                                clear
+                                all items
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-sm-5 col-7">
+                        <div class="left-side-button float-start">
+                            <a href="index.html" class="btn btn-solid-default btn fw-bold mb-0 ms-0">
+                                <i class="fas fa-arrow-left"></i> Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-checkout-section">
+                <div class="row g-4">
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="promo-section">
+                            <form class="row g-3">
+                                <div class="col-7">
+                                    <input type="text" class="form-control" id="number" placeholder="Coupon Code">
+                                </div>
+                                <div class="col-5">
+                                    <button class="btn btn-solid-default rounded btn">Apply Coupon</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-sm-6 ">
+                        <div class="checkout-button">
+                            <a href="checkout.html" class="btn btn-solid-default btn fw-bold">
+                                Check Out <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="cart-box">
+                            <div class="cart-box-details">
+                                <div class="total-details">
+                                    <div class="top-details">
+                                        <h3>Cart Totals</h3>
+                                        <h6>Total MRP <span>$@Model.Items.Sum(x=>x.UnitPrice * x.Quantity).ToString("n2") </span></h6>
+                                        <h6>Coupon Discount <span>-$25.00</span></h6>
+                                        <h6>Convenience Fee <span><del>$25.00</del></span></h6>
+                                    </div>
+                                    <div class="bottom-details">
+                                        <a href="checkout.html">Process Checkout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Cart Section End -->
+@section scripts
+{
+    <script src="~/Theme/assets/js/count-down-timer.js"></script>
+    <script>
+        function SetQuantity(itemId,i)
+        {
+            var quantity;
+            if(i == 1)
+            {
+                quantity = $("#quantity-m-"+itemId).val();
+            }
+            else 
+            {
+                quantity = $("#quantity-d-"+itemId).val();
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/basket/setquantity?basketItemId="+itemId + "&&quantity="+parseInt(quantity),
+                success: function() {
+                    location.reload();
+                }
+            });
+        }
+
+    </script>
+
+
 }

@@ -48,6 +48,8 @@ namespace Persistence.Context
             }
 
             modelBuilder.Entity<CatalogType>().HasQueryFilter(x => EF.Property<bool>(x, "IsRemove") == false);
+            modelBuilder.Entity<BasketItem>().HasQueryFilter(x => EF.Property<bool>(x, "IsRemove") == false);
+            modelBuilder.Entity<Basket>().HasQueryFilter(x => EF.Property<bool>(x, "IsRemove") == false);
 
             modelBuilder.ApplyConfiguration(new CatalogBrandEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new CatalogTypeEntityTypeConfiguration());
