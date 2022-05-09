@@ -1,7 +1,9 @@
+using Application.BasketsService;
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
 using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
 using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposer;
+
 using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
 using Application.Visitors.SaveVisitorInfo;
@@ -18,7 +20,7 @@ using WebSite.EndPoint.Utilities.Middlewares;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews();//.AddRazorRuntimeCompilation();
 
 #region Connection String
 builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
@@ -47,6 +49,7 @@ builder.Services.AddTransient<GetCatalogItemPLPService, GetCatalogItemPLPService
 builder.Services.AddTransient<IUriComposerServie, UriComposerServie>();
 builder.Services.AddTransient<IGetCatalogItemPDPService, GetCatalogItemPDPService>();
 builder.Services.AddTransient<IGetCatalogItemPLPService, GetCatalogItemPLPService>();
+builder.Services.AddTransient<IBasketService, BasketService>();
 
 builder.Services.AddScoped<SaveVisitorFilter>();
 builder.Services.AddSignalR();

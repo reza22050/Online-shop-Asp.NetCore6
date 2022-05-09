@@ -19,10 +19,10 @@ namespace Domain.Baskets
 
         public Basket(string buyerId)
         {
-            BuyerId = BuyerId;
+            BuyerId = buyerId;
         }
 
-        public void AddItem(int catalogItemId, int quantity, int unitPrice)
+        public void AddItem(int catalogItemId, int quantity, decimal unitPrice)
         {
             if (!Items.Any(x => x.CatalogItemId == catalogItemId))
             {

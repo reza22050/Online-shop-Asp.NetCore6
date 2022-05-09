@@ -24,15 +24,24 @@
                                                         <th>Option</th>
                                                     </tr>
                                                 </thead>
+
                                                 <tbody>
                                                    @foreach (var item in Model.CataloType.Data)
                                                    {
                                                        <tr>
+                                                        
+
+
                                                         <td>@item.Id</td>
                                                         <td>@item.Type</td>
                                                         <td>@item.SubTypeCount</td>
+
+                                                    
+
                                                         <td>
                                                             <ul>
+                                                               
+
                                                                 <li>
                                                                     <a asp-page="edit" asp-route-id="@item.Id">
                                                                         <span class="lnr lnr-pencil"></span>
@@ -58,6 +67,8 @@
                                                         </td>
                                                     </tr>
                                                    }
+                                                 
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -103,7 +114,7 @@
                     <footer class="footer">
                         <div class="row">
                             <div class="col-md-12 footer-copyright text-center">
-                                <p class="mb-0">Copyright 2021 © Reza22050</p>
+                                <p class="mb-0">Copyright 2021 © Voxo theme by pixelstrap</p>
                             </div>
                         </div>
                     </footer>

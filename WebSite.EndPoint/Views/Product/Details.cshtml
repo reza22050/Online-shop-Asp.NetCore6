@@ -135,6 +135,8 @@
                                         </div>
                                     </div>
 
+                                    <form asp-action="Index" asp-controller="Basket" method="post">
+                                    <input type="hidden" name="catalogItemId" value="@Model.Id"/>
                                     <div id="selectSize" class="addeffect-section product-description border-product">
                                         <h6 class="product-title size-text">select size
                                             <a href="javascript:void(0)" data-bs-toggle="modal"
@@ -187,13 +189,13 @@
                                             <i class="fa fa-bookmark fz-16 me-2"></i>
                                             <span>Wishlist</span>
                                         </a>
-                                        <a href="javascript:void(0)" id="cartEffect"
+                                        <button type="submit" id="cartEffect"
                                             class="btn btn-solid hover-solid btn-animation">
                                             <i class="fa fa-shopping-cart"></i>
                                             <span>Add To Cart</span>
-                                        </a>
+                                        </button>
                                     </div>
-
+                                    </form>
                                     <ul class="product-count shipping-order">
                                         <li>
                                             <img src="~/Theme/assets/images/gif/truck.png" class="img-fluid blur-up lazyload"

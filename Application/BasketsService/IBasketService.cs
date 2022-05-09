@@ -2,18 +2,13 @@
 using Application.Interfaces.Contexts;
 using Domain.Baskets;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.BasketsService
 {
     public interface IBasketService
     {
         BasketDto GetOrCreateBasketForUser(string BuyerId);
-
+        void AddItemToBasket(int basketId, int catalogItemId, int quantity = 1);
     }
 
     public class BasketService : IBasketService
@@ -26,6 +21,17 @@ namespace Application.BasketsService
             _context = context;
             _uriComposerService = uriComposerService;
         }
+
+        public void AddItemToBasket(int basketId, int catalogItemId, int quantity = 1)
+        {
+            var basket = _context.Baskets.FirstOrDefault(x=>x.Id == basketId);
+            if (basket == null)
+                throw new Exception("");
+            var price = _context.CatalogItems.Find(catalogItemId).Price;
+            basket.AddItem(catalogItemId, quantity, price);
+            _context.SaveChanges();
+        }
+
         public BasketDto GetOrCreateBasketForUser(string BuyerId)
         {
             var basket = _context.Baskets
@@ -56,9 +62,9 @@ namespace Application.BasketsService
         }
 
 
-        private BasketDto CreateBasketForUser(string BuyerId)
+        private BasketDto CreateBasketForUser(string buyerId)
         {
-            Basket basket = new Basket(BuyerId);
+            Basket basket = new Basket(buyerId);
             _context.Baskets.Add(basket);
             _context.SaveChanges();
 
