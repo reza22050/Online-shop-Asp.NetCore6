@@ -1,4 +1,5 @@
 ﻿using Domain.Attributes;
+using Domain.Discounts;
 
 namespace Domain.Catalogs
 {
@@ -23,6 +24,7 @@ namespace Domain.Catalogs
 
         public ICollection<CatalogItemFeature> CatalogItemFeatures { get; set; }
         public ICollection<CatalogItemImage> CatalogItemImages { get; set; }
+        public ICollection<Discount> Discounts { get; set; }
 
     }
 

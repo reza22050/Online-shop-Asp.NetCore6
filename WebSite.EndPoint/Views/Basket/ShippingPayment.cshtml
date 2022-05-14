@@ -1,0 +1,144 @@
+﻿@using WebSite.EndPoint.Models.ViewModels.Basket
+@model ShippingPaymentViewModel
+@{
+    ViewData["Title"] = "ShippingPayment";
+    Layout = "~/Views/Shared/_Layout_Product.cshtml";
+}
+
+
+
+<!-- Breadcrumb section start -->
+<section class="breadcrumb-section section-b-space">
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>Checkout</h3>
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="index.html">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb section end -->
+<!-- Cart Section Start -->
+<section class="section-b-space">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <h3 class="mb-3">Billing address</h3>
+                <div class="needs-validation">
+
+                    <hr class="my-lg-5 my-4">
+
+                    <h3 class="mb-3">Payment</h3>
+
+                    <div class="d-block my-3">
+                        <div class="form-check custome-radio-box">
+                            <input class="form-check-input" type="radio" name="PaymentMethod" id="OnlinePayment" value="OnlinePayment">
+                            <label class="form-check-label" for="OnlinePayment">OnlinePayment</label>
+                        </div>
+
+                        <div class="form-check custome-radio-box">
+                            <input class="form-check-input" type="radio" name="PaymentMethod" id="PaymentOnTheSpot" value="PaymentOnTheSpot">
+                            <label class="form-check-label" for="PaymentOnTheSpot">Payment On The Spot</label>
+                        </div> 
+                    </div>
+
+                    <button class="btn btn-solid-default mt-4" type="submit">
+                        Continue
+                        to checkout
+                    </button>
+                </div>
+
+                <div class="save-details-box">
+                    <div class="row g-3">
+                        @foreach (var item in Model.UserAddresses)
+                        {
+                            <div class="col-xl-4 col-md-6">
+                                <div class="save-details">
+                                    <div class="save-name">
+                                        <h5>@item.ReciverName</h5>
+                                        <div class="save-position">
+                                            <input type="radio" id="Address-@item.Id" name="Address" value="@item.Id" />
+                                        </div>
+                                    </div>
+
+                                    <div class="save-address">
+                                        <p class="font-light">@item.PostalAddress</p>
+                                        <p class="font-light">@item.State</p>
+                                        <p class="font-light">@item.City</p>
+                                        <p class="font-light">@item.ZipCode</p>
+                                    </div>
+
+                                    @*<div class="mobile">
+                                        <p class="font-light mobile">Mobile No. +1-123-456-7890</p>
+                                        </div>*@
+
+                                    <div class="button">
+                                        <a href="javascript:void(0)" class="btn btn-sm">Edit</a>
+                                        <a href="javascript:void(0)" class="btn btn-sm">Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="your-cart-box">
+                    <h3 class="mb-3 d-flex text-capitalize">
+                        Your cart<span class="badge bg-theme new-badge rounded-pill ms-auto bg-dark">@Model.Basket.Items.Count()</span>
+                    </h3>
+                    <ul class="list-group mb-3">
+                  @*      <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <h6 class="my-0">Product name</h6>
+                                <small>Brief description</small>
+                            </div>
+                            <span>$12</span>
+                        </li>*@
+                 
+                        <li class="list-group-item d-flex lh-condensed justify-content-between">
+                            <span class="fw-bold">Total (USD)</span>
+                            <strong>$@Model.Basket.Total().ToString("n2")</strong>
+                        </li>
+                    </ul>
+
+                    <form class="card border-0">
+                        <div class="input-group custome-imput-group">
+                            <input type="text" class="form-control" placeholder="Promo code">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-solid-default rounded-0">Redeem</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Cart Section End -->

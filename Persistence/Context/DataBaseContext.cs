@@ -2,6 +2,9 @@
 using Domain.Attributes;
 using Domain.Baskets;
 using Domain.Catalogs;
+using Domain.Discounts;
+using Domain.Order;
+using Domain.Payments;
 using Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -29,6 +32,11 @@ namespace Persistence.Context
         public DbSet<CatalogItem> CatalogItems { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<UserAddress> UserAddresses { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<Discount> Discounts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -56,6 +64,9 @@ namespace Persistence.Context
 
             //Seed
             DatabaseContextSeed.CatalogSeed(modelBuilder);
+
+            //
+            modelBuilder.Entity<Order>().OwnsOne(x => x.Address);
 
             base.OnModelCreating(modelBuilder); 
         }

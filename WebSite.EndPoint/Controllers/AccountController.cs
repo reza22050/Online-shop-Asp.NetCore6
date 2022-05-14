@@ -1,4 +1,5 @@
-﻿using Domain.Users;
+﻿using Application.BasketsService;
+using Domain.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebSite.EndPoint.Models.ViewModels.Register;
@@ -12,10 +13,13 @@ namespace WebSite.EndPoint.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IBasketService _basketService;
+
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IBasketService basketService)
         {
             _userManager = userManager;
             _signInManager  = signInManager;
+            _basketService = basketService;
         }
 
         public IActionResult Index()
@@ -48,6 +52,7 @@ namespace WebSite.EndPoint.Controllers
             var result = _signInManager.PasswordSignInAsync(user, model.Password, model.IsPersistent, true).Result;
             if (result.Succeeded)
             {
+                TransferBasketForUser(user.Id);
                 return Redirect(model.ReturnUrl);
             }
 
@@ -94,6 +99,9 @@ namespace WebSite.EndPoint.Controllers
             var result = _userManager.CreateAsync(user, model.Password).Result;
             if (result.Succeeded)
             {
+                var mainUser = _userManager.FindByNameAsync(user.Email).Result;
+                TransferBasketForUser(mainUser.Id);
+                _signInManager.SignInAsync(user, true).Wait();
                 return RedirectToAction(nameof(Profile));
             }
 
@@ -111,5 +119,16 @@ namespace WebSite.EndPoint.Controllers
             return View();
         }
 
+
+        private void TransferBasketForUser(string userId)
+        {
+            string cookieName = "BasketId";
+            if (Request.Cookies.ContainsKey(cookieName))
+            {
+                var anonymousId = Request.Cookies[cookieName];
+                _basketService.TransferBasket(anonymousId, userId);
+                Response.Cookies.Delete(cookieName);
+            }
+        }
     }
 }

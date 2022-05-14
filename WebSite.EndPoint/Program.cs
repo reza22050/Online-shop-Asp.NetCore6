@@ -6,6 +6,9 @@ using Application.Catalogs.CatalogItems.UriComposer;
 
 using Application.Catalogs.GetMenuItem;
 using Application.Interfaces.Contexts;
+using Application.Orders;
+using Application.Payments;
+using Application.Users;
 using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
 using Infrastructure.IdentityConfig;
@@ -23,7 +26,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();//.AddRazorRuntimeCompilation();
 
 #region Connection String
-builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
+builder.Services.AddTransient<IDataBaseContext, DataBaseContext>();
+builder.Services.AddTransient<IIdentityDatabaseContext, IdentityDatabaseContext>();
 
 builder.Services.AddDbContext<DataBaseContext>(options =>
 {
@@ -50,6 +54,9 @@ builder.Services.AddTransient<IUriComposerServie, UriComposerServie>();
 builder.Services.AddTransient<IGetCatalogItemPDPService, GetCatalogItemPDPService>();
 builder.Services.AddTransient<IGetCatalogItemPLPService, GetCatalogItemPLPService>();
 builder.Services.AddTransient<IBasketService, BasketService>();
+builder.Services.AddTransient<IUserAddressService, UserAddressService>();
+builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddTransient<IPaymentService, PaymentService>();
 
 builder.Services.AddScoped<SaveVisitorFilter>();
 builder.Services.AddSignalR();
@@ -57,6 +64,7 @@ builder.Services.AddSignalR();
 
 //Mapper
 builder.Services.AddAutoMapper(typeof(CatalogMappingProfile));
+builder.Services.AddAutoMapper(typeof(UserMappingProfile));
 
 var app = builder.Build();
 
@@ -76,6 +84,14 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+      name: "areas",
+      pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+    );
+});
 
 app.MapControllerRoute(
     name: "default",

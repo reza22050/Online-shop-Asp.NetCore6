@@ -12,6 +12,7 @@ namespace Application.BasketsService
         bool RemoveItemFromBasket(int ItemId);
         bool SetQuantities(int itemId, int quantity);
         BasketDto GetBasketForUser(string UserId);
+        void TransferBasket(string anonymousId, string UserId);
     }
 
     public class BasketService : IBasketService
@@ -107,6 +108,27 @@ namespace Application.BasketsService
             item.SetQuantity(quantity);
             _context.SaveChanges();
             return true;
+        }
+
+        public void TransferBasket(string anonymousId, string UserId)
+        {
+            var anonymousBasket = _context.Baskets.SingleOrDefault(x => x.BuyerId == anonymousId);
+            if (anonymousBasket == null) return;
+            var userBasket = _context.Baskets.SingleOrDefault(x=>x.BuyerId == UserId);
+            if (userBasket == null)
+            {
+                userBasket = new Basket(UserId);
+                _context.Baskets.Add(userBasket);
+            }
+
+            foreach (var item in anonymousBasket.Items)
+            {
+                userBasket.AddItem(item.CatalogItemId, item.Quantity, item.UnitPrice); 
+            }
+
+            _context.Baskets.Remove(anonymousBasket);
+            _context.SaveChanges();
+
         }
 
         private BasketDto CreateBasketForUser(string buyerId)
