@@ -1,4 +1,5 @@
 ﻿using Application.BasketsService;
+using Application.Discounts;
 using Application.Orders;
 using Application.Payments;
 using Application.Users;
@@ -20,9 +21,11 @@ namespace WebSite.EndPoint.Controllers
         private readonly IUserAddressService _userAddressService;
         private readonly IOrderService _orderService;
         private readonly IPaymentService _paymentService;
+        private readonly IDiscountService _discountService;
+        private readonly UserManager<User> _userManager;
         private string? UserId = null;
         public BasketController(IBasketService basketService, SignInManager<User> signInManager, IUserAddressService userAddressService, 
-            IOrderService orderService, IPaymentService payment
+            IOrderService orderService, IPaymentService payment, IDiscountService discountService, UserManager<User> userManager
             )
         {
             _basketService = basketService;
@@ -30,6 +33,8 @@ namespace WebSite.EndPoint.Controllers
             _userAddressService = userAddressService;
             _orderService = orderService;
             _paymentService = payment;
+            _discountService = discountService;
+            this._userManager = userManager;
         }
 
         [AllowAnonymous]
@@ -127,5 +132,31 @@ namespace WebSite.EndPoint.Controllers
         {
             return View();
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult ApplyDiscount(string CouponCode, int BasketId)
+        {
+            var user = _userManager.GetUserAsync(User).Result;
+            var validDiscount = _discountService.IsDiscountValid(CouponCode, user);
+
+            if (validDiscount.IsSuccess)
+            {
+                _discountService.ApplyDiscountInBasket(CouponCode, BasketId);
+            }
+            else
+            {
+                TempData["InvalidMessage"] = String.Join(Environment.NewLine, validDiscount.Message.Select(x=>String.Join(", ",x)));
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [AllowAnonymous]
+        public IActionResult RemoveDiscount(int Id)
+        {
+            _discountService.RemoveDiscountFromBasket(Id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

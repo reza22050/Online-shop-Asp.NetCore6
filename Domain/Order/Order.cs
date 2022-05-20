@@ -1,4 +1,5 @@
 ﻿using Domain.Attributes;
+using Domain.Discounts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,12 +23,23 @@ namespace Domain.Order
         private readonly List<OrderItem> _orderItems = new List<OrderItem>();
         public IReadOnlyCollection<OrderItem> OrderItems => _orderItems.AsReadOnly();
 
-        public Order(string userId, Address address,List<OrderItem> orderItems, PaymentMethod paymentMethod)
+
+        public decimal DiscountAmount { get; private set; }
+        public Discount AppliedDiscount { get; private set; }
+        public int? AppliedDiscountId { get; private set; }
+
+
+        public Order(string userId, Address address,List<OrderItem> orderItems, PaymentMethod paymentMethod, Discount discount)
         {
             UserId = userId;
             Address = address;
             PaymentMethod = paymentMethod;
             _orderItems = orderItems;
+            if(discount != null)
+            {
+
+
+            }
         }
 
         public Order()
@@ -37,7 +49,23 @@ namespace Domain.Order
 
         public decimal TotalPrice()
         {
-            return _orderItems.Sum(x => x.UnitPrice * x.Units);
+            decimal totalPrice = _orderItems.Sum(x => x.UnitPrice * x.Units);
+            totalPrice -= AppliedDiscount.GetDiscountAmount(totalPrice);
+            return totalPrice;
+        }
+
+
+        public decimal TotalPriceWithOutDiscount()
+        {
+            decimal totalPrice = _orderItems.Sum(x => x.UnitPrice * x.Units);
+            return totalPrice;
+        }
+
+        public void ApplyDiscountCode(Discount discount)
+        {
+            this.AppliedDiscount = discount;
+            this.AppliedDiscountId = discount.Id;
+            this.DiscountAmount = discount.GetDiscountAmount(TotalPrice());
         }
 
         public void PaymentDone()

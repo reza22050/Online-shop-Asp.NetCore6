@@ -31,10 +31,12 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPLP
         {
             int rowCount = 0;
             var data = _context.CatalogItems
+                .Include(x=>x.Discounts)
                 .Include(x => x.CatalogItemImages)
                 .Include(x => x.CatalogType)
                 .OrderByDescending(x => x.Id)
                 .PagedResult(page, pageSize, out rowCount)
+                .ToList()
                 .Select(x => new CatalogPLPDto()
                 {
                     Id = x.Id,

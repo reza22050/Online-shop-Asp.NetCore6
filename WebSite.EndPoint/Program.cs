@@ -1,10 +1,12 @@
 using Application.BasketsService;
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
+using Application.Catalogs.CatalogItems.CatalogItemServices;
 using Application.Catalogs.CatalogItems.GetCatalogItemPDP;
 using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposer;
 
 using Application.Catalogs.GetMenuItem;
+using Application.Discounts;
 using Application.Interfaces.Contexts;
 using Application.Orders;
 using Application.Payments;
@@ -57,6 +59,9 @@ builder.Services.AddTransient<IBasketService, BasketService>();
 builder.Services.AddTransient<IUserAddressService, UserAddressService>();
 builder.Services.AddTransient<IOrderService, OrderService>();
 builder.Services.AddTransient<IPaymentService, PaymentService>();
+builder.Services.AddTransient<IDiscountService, DiscountService>();
+builder.Services.AddTransient<IDiscountHistoryService, DiscountHistoryService>();
+builder.Services.AddTransient<ICatalogItemService, CatalogItemService>();
 
 builder.Services.AddScoped<SaveVisitorFilter>();
 builder.Services.AddSignalR();

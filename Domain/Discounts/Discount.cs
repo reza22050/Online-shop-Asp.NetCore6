@@ -20,7 +20,7 @@ namespace Domain.Discounts
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public bool RequiresCouponCode { get; set; }
-        public bool CouponCode { get; set; }
+        public string CouponCode { get; set; }
 
         [NotMapped]
         public DiscountType DiscountType {
@@ -42,6 +42,22 @@ namespace Domain.Discounts
             set => this.DiscountLimitationId = (int)value;
         }
 
+
+        public decimal GetDiscountAmount(decimal amount)
+        {
+            var result = 0.00m;
+            if(UsePercentage)
+            {
+                result = (((amount) * (DiscountPercentage)) / 100);
+            }
+            else
+            {
+                result = DiscountAmount;
+            }
+            return result;
+        }
+
+        public int LimitationTimes { get; set; }
     }
 
     public enum DiscountType

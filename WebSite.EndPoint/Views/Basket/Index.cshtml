@@ -41,6 +41,16 @@
 </section>
 <!-- Breadcrumb section end -->
 <!-- Cart Section Start -->
+
+@if(TempData["InvalidMessage"] != null)
+{
+    <div class="container">
+        <div class="alert alert-warning">
+            <b>@TempData["InvalidMessage"]</b> <br>
+        </div>
+    </div>    
+}
+
 <section class="cart-section section-b-space">
     <div class="container">
         <div class="row">
@@ -162,14 +172,19 @@
                 <div class="row g-4">
                     <div class="col-lg-4 col-sm-6">
                         <div class="promo-section">
-                            <form class="row g-3">
+                            <form class="row g-3" method="post" asp-action="ApplyDiscount">
+                                <input type="hidden" value="@Model.Id" name="BasketId"/>
                                 <div class="col-7">
-                                    <input type="text" class="form-control" id="number" placeholder="Coupon Code">
+                                    <input type="text" class="form-control" name="CouponCode" placeholder="Coupon Code">
                                 </div>
                                 <div class="col-5">
                                     <button class="btn btn-solid-default rounded btn">Apply Coupon</button>
                                 </div>
                             </form>
+                            <a asp-action="RemoveDiscount" asp-route-id="@Model.Id"
+                               class="text-decoration-underline theme-color d-block text-capitalize">
+                               Remove Coupon Code
+                            </a>
                         </div>
                     </div>
 
@@ -187,8 +202,8 @@
                                 <div class="total-details">
                                     <div class="top-details">
                                         <h3>Cart Totals</h3>
-                                        <h6>Total MRP <span>$@Model.Items.Sum(x=>x.UnitPrice * x.Quantity).ToString("n2") </span></h6>
-                                        <h6>Coupon Discount <span>-$25.00</span></h6>
+                                        <h6>Total MRP <span>$@Model.TotalWithOutDiscount().ToString("n2") </span></h6>
+                                        <h6>Coupon Discount <span>-@Model.DiscountAmount.ToString("n2")</span></h6>
                                         <h6>Convenience Fee <span><del>$25.00</del></span></h6>
                                     </div>
                                     <div class="bottom-details">

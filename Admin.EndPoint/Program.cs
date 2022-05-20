@@ -2,6 +2,8 @@ using Admin.EndPoint.MappingProfiles;
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
 using Application.Catalogs.CatalogItems.CatalogItemServices;
 using Application.Catalogs.CatalogTypes;
+using Application.Discounts;
+using Application.Discounts.AddNewDiscountServices;
 using Application.Interfaces.Contexts;
 using Application.Visitors.GetTodayReport;
 using FluentValidation;
@@ -15,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
 
 #region Connection String
 builder.Services.AddScoped<IDataBaseContext, DataBaseContext>();
@@ -30,6 +33,8 @@ builder.Services.AddTransient<ICatalogTypeService, CatalogTypeService>();
 builder.Services.AddTransient<IAddNewCatalogItemService, AddNewCatalogItemService>();
 builder.Services.AddTransient<ICatalogItemService, CatalogItemService>();
 builder.Services.AddTransient<IImageUploadService, ImageUploadService>();
+builder.Services.AddTransient<IAddNewDiscountServices, AddNewDiscountServices>();
+builder.Services.AddTransient<IDiscountService, DiscountService>();
 
 
 
@@ -59,5 +64,6 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.MapControllers();
 
 app.Run();
