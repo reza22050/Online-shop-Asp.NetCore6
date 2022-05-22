@@ -46,7 +46,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPDP
 
             var similarCatalogItems = _context.CatalogItems
                 .Include(x => x.CatalogItemImages)
-                .Where(x => x.CatalogTypeId == catalogItem.CatalogTypeId && x.Id!=Id)
+                .Where(x => x.CatalogTypeId == catalogItem.CatalogTypeId && x.Slug == Slug)
                 .Take(10)
                 .Select(x => new SimilarCatalogItemDto()
                 {

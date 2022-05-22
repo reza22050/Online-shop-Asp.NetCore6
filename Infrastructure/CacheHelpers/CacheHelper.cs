@@ -17,7 +17,7 @@ namespace Infrastructure.CacheHelpers
 
         public static string GenerateCatalogItemCacheKey(int pageIndex, int itemsPage, int? typeId)
         {
-           return string.Format(_itemsKeyTemplate, pageIndex,itemsPage, typeId) 
+            return string.Format(_itemsKeyTemplate, pageIndex, itemsPage, typeId); 
         }
     }
 }

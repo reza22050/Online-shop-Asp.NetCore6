@@ -6,6 +6,7 @@ using Application.Catalogs.CatalogItems.GetCatalogItemPLP;
 using Application.Catalogs.CatalogItems.UriComposer;
 
 using Application.Catalogs.GetMenuItem;
+using Application.Comments.Commands;
 using Application.Discounts;
 using Application.HomePageService;
 using Application.Interfaces.Contexts;
@@ -17,6 +18,7 @@ using Application.Visitors.SaveVisitorInfo;
 using Application.Visitors.VisitorOnline;
 using Infrastructure.IdentityConfig;
 using Infrastructure.MappingProfile;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Context.MongoContext;
@@ -57,6 +59,7 @@ builder.Services.AddDistributedSqlServerCache(option =>
     option.TableName = "CacheDAta";
 });
 
+builder.Services.AddMediatR(typeof(SendCommentCommad).Assembly);
 
 builder.Services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
 builder.Services.AddTransient<ISaveVisitorInfoService, SaveVisitorInfoService>();

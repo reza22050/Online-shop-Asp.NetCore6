@@ -36,5 +36,6 @@ namespace Application.Interfaces.Contexts
         Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         EntityEntry Entry(object entity);
+        DbSet<CatalogItemComment> CatalogItemComments { get; set; }
     }
 }
