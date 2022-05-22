@@ -33,7 +33,9 @@ namespace WebSite.EndPoint.Models.TagHelpers
             {
                 if (item.SubMenu.Count() > 0)
                 {
-                    var liAll = CreateLi(item.Name, "#", "submenu");
+                    string link = $"/product?CatalogTypeId={item.Id}";
+
+                    var liAll = CreateLi(item.Name, link, "submenu");
 
                     var ulSub = new TagBuilder("ul");
                     ulSub.AddCssClass("category-mega-menu");
@@ -53,7 +55,10 @@ namespace WebSite.EndPoint.Models.TagHelpers
 
                             var ulSub2 = CreateUl();
                             foreach (var sub2 in item.SubMenu[i].SubMenu.Take(maxColumnCount)) {
-                                var sub2Title = CreateLi(sub2.Name, "#", null);
+
+                                link = $"/product?CatalogTypeId={sub2.Id}";
+
+                                var sub2Title = CreateLi(sub2.Name, link, null);
                                 ulSub2.InnerHtml.AppendHtml(sub2Title);
                             }
 

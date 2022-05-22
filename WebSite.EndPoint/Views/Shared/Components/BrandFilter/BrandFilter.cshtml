@@ -1,0 +1,67 @@
+﻿@using Application.Catalogs.CatalogItems.CatalogItemServices
+@model List<CatalogBrandDto>
+@{
+    Layout = null;
+    var BRANDID = Context.Request.Query["brandId"];
+}
+
+
+<div class="accordion-item category-rating">
+    <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo">
+            Brand
+        </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse show"
+         data-bs-parent="#accordionExample">
+        <div class="accordion-body category-scroll">
+            <ul class="category-list">
+
+                @foreach (var item in Model)
+                {
+                    <form asp-action="Index" method="post">
+                    @if (BRANDID.ToList().Any(x => x == item.Id.ToString()))
+                    {
+                       
+                        <li>
+                            <div class="form-check ps-0 custome-form-check">
+                                <input class="checkbox_animated check-it" type="checkbox" checked
+                               name="brandId" value="@item.Id" onclick="submit()">
+                                <label class="form-check-label" for="flexCheckDefault1">@item.Brand</label>
+                                    @*<p class="font-light">(25)</p>*@
+                            </div>
+                        </li>
+                       
+                    }
+                    else
+                    {
+                        <li>
+                            <div class="form-check ps-0 custome-form-check">
+                                <input class="checkbox_animated check-it" type="checkbox"
+                               name="brandId" value="@item.Id" onclick="submit()">
+                                <label class="form-check-label" for="flexCheckDefault1">@item.Brand</label>
+                                    @*<p class="font-light">(25)</p>*@
+                            </div>
+                        </li>
+                       
+
+                    }
+
+                        @foreach (var queryString in Context.Request.Query.Where(x => x.Key != "brandId").ToList())
+                        {
+                            <input type="hidden" name="@queryString.Key" value="@queryString.Value"/>        
+                        }
+                    
+                     </form>
+                }
+
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+

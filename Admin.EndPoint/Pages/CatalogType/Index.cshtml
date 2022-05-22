@@ -2,121 +2,151 @@
 @model Admin.EndPoint.Pages.CatalogType.IndexModel
 @{
 }
-      <!-- Container-fluid starts-->
-            <div class="page-body">
-                <div class="title-header">
-                    <h5>Products List</h5>
-                </div>
+<!-- Container-fluid starts-->
+<div class="page-body">
+    <div class="title-header">
+        <h5>Products List</h5>
+    </div>
 
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div>
-                                        <div class="table-responsive table-desi table-product">
-                                            <table class="table table-1d all-package">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Id</th>
-                                                        <th>Type</th>
-                                                        <th>SubTypeCount</th>
-                                                        <th>Option</th>
-                                                    </tr>
-                                                </thead>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <div class="table-responsive table-desi table-product">
+                                <table class="table table-1d all-package">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Type</th>
+                                            <th>SubTypeCount</th>
+                                            <th>Option</th>
+                                        </tr>
+                                    </thead>
 
-                                                <tbody>
-                                                   @foreach (var item in Model.CataloType.Data)
-                                                   {
-                                                       <tr>
-                                                        
+                                    <tbody>
+                                        @foreach (var item in Model.CataloType.Data)
+                                        {
+                                            <tr>
 
 
-                                                        <td>@item.Id</td>
-                                                        <td>@item.Type</td>
-                                                        <td>@item.SubTypeCount</td>
 
-                                                    
+                                                <td>@item.Id</td>
+                                                <td>@item.Type</td>
+                                                <td>@item.SubTypeCount</td>
 
-                                                        <td>
-                                                            <ul>
-                                                               
 
-                                                                <li>
-                                                                    <a asp-page="edit" asp-route-id="@item.Id">
-                                                                        <span class="lnr lnr-pencil"></span>
-                                                                    </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a asp-page="delete" asp-route-id="@item.Id">
-                                                                        <i class="far fa-trash-alt theme-color"></i>
-                                                                    </a>
-                                                                </li>
-                                                                 <li>
-                                                                    <a asp-page="create" asp-route-parentId="@item.Id">
-                                                                        <i class="lnr lnr-plus-circle"></i>
-                                                                    </a>
-                                                                </li>
-                                                                 <li>
-                                                                    <a asp-page="index" asp-route-parentId="@item.Id">
-                                                                        <span class="lnr lnr-eye"></span>
-                                                                    </a>
-                                                                </li>
 
-                                                            </ul>
-                                                        </td>
-                                                    </tr>
-                                                   }
-                                                 
+                                                <td>
+                                                    <ul>
 
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="pagination-box">
-                                    <nav class="ms-auto me-auto " aria-label="...">
-                                        <ul class="pagination pagination-primary">
-                                            <li class="page-item disabled">
-                                                <a class="page-link" href="javascript:void(0)"
-                                                    tabindex="-1">Previous</a>
-                                            </li>
+                                                        <li>
+                                                            <a asp-page="edit" asp-route-id="@item.Id">
+                                                                <span class="lnr lnr-pencil"></span>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a asp-page="delete" asp-route-id="@item.Id">
+                                                                <i class="far fa-trash-alt theme-color"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a asp-page="create" asp-route-parentId="@item.Id">
+                                                                <i class="lnr lnr-plus-circle"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a asp-page="index" asp-route-parentId="@item.Id">
+                                                                <span class="lnr lnr-eye"></span>
+                                                            </a>
+                                                        </li>
 
-                                            <li class="page-item active">
-                                                <a class="page-link" href="javascript:void(0)">1</a>
-                                            </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        }
 
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)">2 <span
-                                                        class="sr-only">(current)</span>
-                                                </a>
-                                            </li>
 
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)">3</a>
-                                            </li>
-
-                                            <li class="page-item">
-                                                <a class="page-link" href="javascript:void(0)">Next</a>
-                                            </li>
-                                        </ul>
-                                    </nav>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Container-fluid Ends-->
 
-                <div class="container-fluid">
-                    <!-- footer start-->
-                    <footer class="footer">
-                        <div class="row">
-                            <div class="col-md-12 footer-copyright text-center">
-                                <p class="mb-0">Copyright 2021 © Voxo theme by pixelstrap</p>
-                            </div>
-                        </div>
-                    </footer>
+                    @{
+                        var prevDisabled = !Model.CataloType.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.CataloType.HasNextPage ? "disabled" : "";
+                    }
+
+                    <div class="pagination-box">
+                        <nav class="ms-auto me-auto " aria-label="...">
+                            <ul class="pagination pagination-primary">
+
+                                <li class="page-item">
+                                    <a class="page-link" asp-page="Index" asp-route-parentid="@Request.Query["parentid"]"
+                                       asp-route-pageIndex="1"
+                                       tabindex="-1">FirstPage</a>
+                                </li>
+
+                                <li class="page-item @prevDisabled">
+                                    <a class="page-link" asp-page="Index" asp-route-parentid="@Request.Query["parentid"]"
+                                       asp-route-pageIndex="@(Model.CataloType.PageIndex -1)"
+                                       tabindex="-1">Previous</a>
+                                </li>
+
+
+                                @foreach (var item in Model.CataloType.Pager.Pages)
+                                {
+                                    if (item == Model.CataloType.PageIndex)
+                                    {
+                                         <li class="page-item active">
+                                            <a class="page-link"  asp-page="Index" asp-route-parentid="@Request.Query["parentid"]"
+                                        asp-route-pageIndex ="@item"
+                                        >@item</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link"  asp-page="Index" asp-route-parentid="@Request.Query["parentid"]"
+                                        asp-route-pageIndex ="@item"
+                                        >@item</a>
+                                        </li>
+                                    }
+                                }
+
+
+
+
+                                <li class="page-item @nextDisabled">
+                                    <a class="page-link" asp-page="Index" asp-route-parentid="@Request.Query["parentid"]"
+                                       asp-route-pageIndex="@(Model.CataloType.PageIndex +1)">Next</a>
+                                </li>
+                                
+                                <li class="page-item">
+                                    <a class="page-link" asp-page="Index" asp-route-parentid="@Request.Query["parentid"]"
+                                       asp-route-pageIndex="@(Model.CataloType.Pager.TotalPages)">lastPage</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+
+    <div class="container-fluid">
+        <!-- footer start-->
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-12 footer-copyright text-center">
+                    <p class="mb-0">Copyright 2021 © Voxo theme by pixelstrap</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+

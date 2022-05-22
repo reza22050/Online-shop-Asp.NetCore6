@@ -1,0 +1,104 @@
+﻿@page
+@model Admin.EndPoint.Pages.Banners.CreateModel
+@{
+}
+
+
+<div class="page-body">
+    <div class="title-header">
+        <h5>Add New Catalog Item</h5>
+    </div>
+
+    <!-- New Product Add Start -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form class="theme-form theme-form-2 mega-form" asp-antiforgery="true" id ="createForm" asp-page="create" method="post" enctype="multipart/form-data">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-header-2">
+                                        <h5>Banner Item Information</h5>
+                                    </div>
+                                    <div class="row">
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Name</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" asp-for="Banner.Name">
+                                                <span asp-validation-for="Banner.Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">IsActive</label>
+                                            <div class="col-sm-10">
+                                                 <input class="form-control" type="text" asp-for="Banner.IsActive">
+                                                <span asp-validation-for="Banner.IsActive" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Link</label>
+                                            <div class="col-sm-10">
+                                                 <input class="form-control" type="text" asp-for="Banner.Link">
+                                                <span asp-validation-for="Banner.Link" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Priority</label>
+                                            <div class="col-sm-10">
+                                                 <input class="form-control" type="text" asp-for="Banner.Position">
+                                                <span asp-validation-for="Banner.Position" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="form-label-title col-sm-2 mb-0">Priority</label>
+                                            <div class="col-sm-10">
+                                                 <input class="form-control" type="text" asp-for="Banner.Priority">
+                                                <span asp-validation-for="Banner.Priority" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="mb-4 row align-items-center">
+                                            <label class="col-sm-2 col-form-label form-label-title">Images</label>
+                                            <div class="col-sm-10">
+                                                <input asp-for="BannerImage" class="form-control form-choose" type="file" id="Images" multiple accept="image/*">
+                                                <span asp-validation-for="BannerImage" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <button type="submit" class="btn btn-primary me-3">Submit</button>
+                                                    <a asp-page="Index" class="btn btn-info" >Back</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- New Product Add End -->
+    <!-- footer Start -->
+    <div class="container-fluid">
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-12 footer-copyright text-center">
+                    <p class="mb-0">Copyright 2022 © Reza22050</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <!-- footer En -->
+</div>

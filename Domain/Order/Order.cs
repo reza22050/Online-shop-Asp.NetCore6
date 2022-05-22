@@ -1,4 +1,5 @@
 ﻿using Domain.Attributes;
+using Domain.Catalogs;
 using Domain.Discounts;
 using System;
 using System.Collections.Generic;
@@ -50,7 +51,10 @@ namespace Domain.Order
         public decimal TotalPrice()
         {
             decimal totalPrice = _orderItems.Sum(x => x.UnitPrice * x.Units);
-            totalPrice -= AppliedDiscount.GetDiscountAmount(totalPrice);
+            if (AppliedDiscount != null)
+            {
+                totalPrice -= AppliedDiscount.GetDiscountAmount(totalPrice);
+             }
             return totalPrice;
         }
 
@@ -143,6 +147,7 @@ namespace Domain.Order
         }
 
         public int Id { get; set; }
+        public CatalogItem CatalogItem { get; set; }
         public int CatalogItemId { get; private set; }
         public string ProductName { get; private set; }
         public string PictureUri { get; private set; }

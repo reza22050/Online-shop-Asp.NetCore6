@@ -151,102 +151,11 @@
                         <button class="btn p-0"><i data-feather="arrow-left"></i> Close</button>
                     </div>
                     <div class="accordion category-name" id="accordionExample">
-                        <div class="accordion-item category-rating">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo">
-                                    Brand
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse show"
-                                 data-bs-parent="#accordionExample">
-                                <div class="accordion-body category-scroll">
-                                    <ul class="category-list">
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault1">
-                                                <label class="form-check-label" for="flexCheckDefault1">Zara</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault2">
-                                                <label class="form-check-label" for="flexCheckDefault2">
-                                                    Allen
-                                                    Solly
-                                                </label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault3">
-                                                <label class="form-check-label" for="flexCheckDefault3">
-                                                    Louis
-                                                    Philippe
-                                                </label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault4">
-                                                <label class="form-check-label" for="flexCheckDefault4">
-                                                    Louis
-                                                    Philippe Sport
-                                                </label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault5">
-                                                <label class="form-check-label" for="flexCheckDefault5">H&M</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault6">
-                                                <label class="form-check-label" for="flexCheckDefault6">Fila</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault7">
-                                                <label class="form-check-label" for="flexCheckDefault7">Puma</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault8">
-                                                <label class="form-check-label" for="flexCheckDefault8">Nike</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="form-check ps-0 custome-form-check">
-                                                <input class="checkbox_animated check-it" type="checkbox"
-                                                       id="flexCheckDefault9">
-                                                <label class="form-check-label" for="flexCheckDefault9">HRX</label>
-                                                <p class="font-light">(25)</p>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        
+
+                        @await Component.InvokeAsync("BrandFilter")
+
+
 
                         <div class="accordion-item category-price">
                             <h2 class="accordion-header" id="headingFour">
@@ -511,6 +420,52 @@
                                 </div>
                             </div>
                         </div>
+
+                         <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseFive">
+                                    Discount Range
+                                </button>
+                            </h2>
+                         
+                            <div id="collapseFive" class="accordion-collapse collapse show"
+                                 aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+
+                                    @{
+                                        var AvailableStock = Context.Request.Query["AvailableStock"];
+                                        <form asp-action="Index" method="get">
+                                        if (AvailableStock == true)
+                                        {
+                                           
+                                                <input type="checkbox" name="AvailableStock" onclick="submit()" value="false" checked/>
+                                                <lable>Is exist in stock?</lable>
+                                        }
+                                        else
+                                        {
+                                                <input type="checkbox" name="AvailableStock" onclick="submit()" value="true" />
+                                                <lable>Is exist in stock?</lable>
+                                        }
+
+                                        @foreach (var queryString in Context.Request.Query.Where(x=>x.Key == "brandId" || x.Key == "catalogyTypeId").ToList())
+                                            {
+                                                foreach (var item in queryString.Value)
+                                                {
+                                                    <input type="hidden" name="@queryString.Key" value="@item" />
+                                                }
+
+                                            }
+
+                                         </form>
+
+                                    }
+
+
+                                    
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -571,39 +526,33 @@
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                             <li>
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    Alphabetically
-                                                    A-Z
+                                                <a class="dropdown-item" asp-action="Index" asp-route-sorttype="1">
+                                                    Most Visited
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    Alphabetically
-                                                    Z-A
+                                                <a class="dropdown-item" asp-action="Index" asp-route-sorttype="2">
+                                                    Most Selling
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    Price, High To
-                                                    Low
+                                                <a class="dropdown-item" asp-action="Index" asp-route-sorttype="3">
+                                                    Most Popular
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    Price, Low To
-                                                    High
+                                                <a class="dropdown-item" asp-action="Index" asp-route-sorttype="4">
+                                                   Newest
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    Date, Old To
-                                                    New
+                                                <a class="dropdown-item" asp-action="Index" asp-route-sorttype="5">
+                                                    Cheapest
                                                 </a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" href="javascript:void(0)">
-                                                    Date, New To
-                                                    Old
+                                                <a class="dropdown-item" asp-action="Index" asp-route-sorttype="6">
+                                                    MostExpensive
                                                 </a>
                                             </li>
                                         </ul>
@@ -745,11 +694,19 @@
                                                 accusantium architecto placeat quam officia, tempore repellendus.
                                             </p>
                                         </div>
-                                        <h3 class="theme-color">$@item.Price.ToString("n2")</h3>
-                                        <button onclick="location.href = 'cart.html';" class="btn listing-content">
-                                            Add
-                                            To Cart
-                                        </button>
+                                        @if (item.AvailableStock > 0)
+                                        {
+                                            <h3 class="theme-color">$@item.Price.ToString("n2")</h3>
+                                            <button onclick="location.href = 'cart.html';" class="btn listing-content">
+                                                Add
+                                                To Cart
+                                            </button>
+                                        }
+                                        else
+                                        {
+                                            <h3 class="theme-color">Not Exist</h3>
+                                        }
+
                                     </div>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPDP
 {
     public interface IGetCatalogItemPDPService
     {
-        GetCatalogItemPDPDto Execute(int Id);
+        GetCatalogItemPDPDto Execute(string Slug);
     }
 
     public class GetCatalogItemPDPService : IGetCatalogItemPDPService
@@ -24,7 +24,7 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPDP
             _context = context;
             _uriComposerServie = uriComposerServie;
         }
-        public GetCatalogItemPDPDto Execute(int Id)
+        public GetCatalogItemPDPDto Execute(string Slug)
         {
             var catalogItem = _context.CatalogItems
                 .Include(x=>x.CatalogItemFeatures)
@@ -32,7 +32,10 @@ namespace Application.Catalogs.CatalogItems.GetCatalogItemPDP
                 .Include(x=>x.CatalogType)
                 .Include(x=>x.CatalogBrand)
                 .Include(x=>x.Discounts)
-                .SingleOrDefault(x=>x.Id == Id);
+                .SingleOrDefault(x=>x.Slug == Slug);
+
+            catalogItem.VisitCount += 1;
+            _context.SaveChanges();
 
             var feature = catalogItem.CatalogItemFeatures.Select(x => new PDPFeatureDto()
             {

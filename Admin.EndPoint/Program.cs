@@ -1,6 +1,8 @@
 using Admin.EndPoint.MappingProfiles;
+using Application.Banners;
 using Application.Catalogs.CatalogItems.AddNewCatalogItem;
 using Application.Catalogs.CatalogItems.CatalogItemServices;
+using Application.Catalogs.CatalogItems.UriComposer;
 using Application.Catalogs.CatalogTypes;
 using Application.Discounts;
 using Application.Discounts.AddNewDiscountServices;
@@ -27,6 +29,14 @@ builder.Services.AddDbContext<DataBaseContext>(options =>
 });
 #endregion
 
+
+builder.Services.AddDistributedSqlServerCache(option =>
+{
+    option.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer"];
+    option.SchemaName = "dbo";
+    option.TableName = "CacheDAta";
+});
+
 builder.Services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
 builder.Services.AddScoped<IGetTodayReportService, GetTodayReportService>();
 builder.Services.AddTransient<ICatalogTypeService, CatalogTypeService>();
@@ -35,6 +45,9 @@ builder.Services.AddTransient<ICatalogItemService, CatalogItemService>();
 builder.Services.AddTransient<IImageUploadService, ImageUploadService>();
 builder.Services.AddTransient<IAddNewDiscountServices, AddNewDiscountServices>();
 builder.Services.AddTransient<IDiscountService, DiscountService>();
+builder.Services.AddTransient<IBannersService, BannersService>();
+builder.Services.AddTransient<IUriComposerServie, UriComposerServie>();
+builder.Services.AddTransient<IDiscountHistoryService, DiscountHistoryService>();
 
 
 

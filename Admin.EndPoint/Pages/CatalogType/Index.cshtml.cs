@@ -15,9 +15,9 @@ namespace Admin.EndPoint.Pages.CatalogType
 
         public PaginatedItemsDto<CatalogTypeListDto> CataloType { get; set; }
 
-        public void OnGet(int? parentId, int page = 1, int pageSize = 100)
+        public void OnGet(int? parentId, int pageIndex = 1, int pageSize = 100)
         {
-            CataloType = _catalogTypeService.GetList(parentId, page, pageSize);
+            CataloType = _catalogTypeService.GetList(parentId, pageIndex, pageSize);
         }
     }
 }

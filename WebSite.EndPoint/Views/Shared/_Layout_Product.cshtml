@@ -940,10 +940,13 @@
                             </div>
                             <div class="search-full">
                                 <div class="input-group">
+                                   
                                     <span class="input-group-text">
                                         <i data-feather="search" class="font-light"></i>
                                     </span>
-                                    <input type="text" class="form-control search-type" placeholder="Search here..">
+                                     <form asp-action="Index" asp-controller="Product" method="get">
+                                    <input type="text" name="searchkey" class="form-control search-type" placeholder="Search here..">
+                                    </form>
                                     <span class="input-group-text close-search">
                                         <i data-feather="x" class="font-light"></i>
                                     </span>

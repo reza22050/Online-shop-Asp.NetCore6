@@ -14,16 +14,16 @@ namespace WebSite.EndPoint.Controllers
             _getCatalogItemPLPService = getCatalogItemPLPService;
             this._getCatalogItemPDPService = getCatalogItemPDPService;
         }
-        public IActionResult Index(int page = 1, int pageSize = 20)
+        public IActionResult Index(CatalogPLPRequestDto catalogPLPRequestDto)
         {
-            var data = _getCatalogItemPLPService.Execute(page, pageSize);
+            var data = _getCatalogItemPLPService.Execute(catalogPLPRequestDto);
 
             return View(data);
         }
 
-        public IActionResult Details(int Id)
+        public IActionResult Details(string  Slug)
         {
-            var data = _getCatalogItemPDPService.Execute(Id);
+            var data = _getCatalogItemPDPService.Execute(Slug);
 
             return View(data);
         }

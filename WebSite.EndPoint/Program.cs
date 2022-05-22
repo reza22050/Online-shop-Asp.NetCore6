@@ -7,8 +7,10 @@ using Application.Catalogs.CatalogItems.UriComposer;
 
 using Application.Catalogs.GetMenuItem;
 using Application.Discounts;
+using Application.HomePageService;
 using Application.Interfaces.Contexts;
 using Application.Orders;
+using Application.Orders.CustomerOrdersServices;
 using Application.Payments;
 using Application.Users;
 using Application.Visitors.SaveVisitorInfo;
@@ -19,6 +21,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
 using Persistence.Context.MongoContext;
 using WebSite.EndPoint.Hubs;
+using WebSite.EndPoint.Middlewares;
 using WebSite.EndPoint.Utilities.Filters;
 using WebSite.EndPoint.Utilities.Middlewares;
 
@@ -47,6 +50,14 @@ builder.Services.ConfigureApplicationCookie(option =>
 });
 #endregion
 
+builder.Services.AddDistributedSqlServerCache(option =>
+{
+    option.ConnectionString = builder.Configuration["ConnectionStrings:SqlServer"];
+    option.SchemaName = "dbo";
+    option.TableName = "CacheDAta";
+});
+
+
 builder.Services.AddTransient(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
 builder.Services.AddTransient<ISaveVisitorInfoService, SaveVisitorInfoService>();
 builder.Services.AddTransient<IVisitorOnlineService, VisitorOnlineService>();
@@ -62,6 +73,8 @@ builder.Services.AddTransient<IPaymentService, PaymentService>();
 builder.Services.AddTransient<IDiscountService, DiscountService>();
 builder.Services.AddTransient<IDiscountHistoryService, DiscountHistoryService>();
 builder.Services.AddTransient<ICatalogItemService, CatalogItemService>();
+builder.Services.AddTransient<ICustomerOrdersServices, CustomerOrdersServices>();
+builder.Services.AddTransient<IHomePageService,  HomePageService>();
 
 builder.Services.AddScoped<SaveVisitorFilter>();
 builder.Services.AddSignalR();
@@ -81,6 +94,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCustomExceptionHandler();
 app.UseSetVisitorId();
 
 app.UseHttpsRedirection();
@@ -101,6 +115,10 @@ app.UseEndpoints(endpoints =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "product/{Slug}",
+    pattern: "{controller=Product}/{action=Details}");
 
 app.MapHub<OnlineVisitorHub>("/chathub");
 app.Run();
